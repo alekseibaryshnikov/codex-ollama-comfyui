@@ -66,6 +66,40 @@ non-native unit suite without model downloads or stored credentials.
 
 ## Evidence limits
 
+### Installed skill recovery addition
+
+`SKILLS-1/2/3` in `restore_skills.py` map to
+`tests/test_restore_skills.py`. The fixture suite uses real temporary profile
+files and replaces Git/plugin subprocess boundaries; it doesn't prove native
+installation by itself.
+
+- `python -m unittest discover -s tests -p test_restore_skills.py -v` first
+  collected nine tests against the declared, unimplemented restore boundary and
+  failed there. After implementation the same tests passed, with the host's
+  unsupported symlink fixture skipped.
+- Two plugin tests failed against their declared unimplemented boundary, then
+  passed. Further regression assertions observed useful failures for hidden
+  native stderr, repeated marketplace registration, and missing fresh-profile
+  `CODEX_HOME`. Each repair passed the same regression before integration.
+- Final focused suite: 12 tests, OK, one symlink fixture skipped. Full
+  `python -m unittest discover -s tests -v`: 125 tests, OK, seven optional
+  native/symlink checks skipped. Private red/green logs remain in ignored `work`.
+- Real `python restore_skills.py --approved --codex-home
+  work/skills-smoke-profile/.codex` fetched the eight pinned public sources and
+  installed all 131 standalone skills into an isolated profile. Independent
+  readback matched the manifest's exact 1,672 file paths, sizes and SHA-256
+  digests (68,476,716 bytes). No reference user skill was changed.
+- Codex app-server `skills/list` discovered all 131 restored skills as enabled,
+  with zero parse errors, at repository scope under that isolated profile.
+  This exercises actual native parsing, not a replacement parser. Actual new
+  Windows account user-scope discovery remains a destination check.
+- The native plugin command registered Ponytail and installed it in a second
+  isolated profile. A repeat restore returned Ponytail unchanged with no errors.
+  The other 13 plugin installs and external account connections were not run.
+
+These checks restore and discover skills. They don't exercise each skill's
+workflow or install its additional runtime tools.
+
 No clean Windows OS installation, new NVIDIA driver install, full dependency
 download/install, live Ollama alias replacement, model download or gated-license
 acceptance was performed for publication. The current ComfyUI source pin and

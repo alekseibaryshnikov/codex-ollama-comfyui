@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Reward Design"
+  short_description: "Build clear reward loops and test repeat play"
+  default_prompt: "Use $game-reward-design to build or improve this game with a clear reward loop, readable bonus progression, and a focused validation plan."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stake Submission Review"
+  short_description: "Review 51 Stake submission and release checks"
+  default_prompt: "Use $stake-submission-review to check this build against all 51 supplied Stake requirements and report evidence, gaps, and remaining release tasks."

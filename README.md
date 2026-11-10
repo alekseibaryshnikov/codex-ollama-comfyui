@@ -5,8 +5,9 @@ work, Terra reviews every code patch, and Astra handles difficult work. Local
 Qwen is optional and used only for suitable bounded coding tasks. ComfyUI makes
 the media.
 
-This repository contains source, workflows, model download references and
-Windows dependency locks. It does **not** contain model weights, credentials,
+This repository contains source, workflows, custom skills, pinned references to
+installed upstream skills, model download references and Windows dependency locks.
+It does **not** contain model weights, credentials,
 machine configuration, generated media or old job histories.
 
 ## What it restores
@@ -41,6 +42,10 @@ The exact known Python build is recorded in [the runtime lock](locks/runtime.jso
 git clone https://github.com/alekseibaryshnikov/codex-ollama-comfyui.git
 cd codex-ollama-comfyui
 
+# Preview and restore standalone skills. This doesn't require ComfyUI or Ollama.
+py -3.12 restore_skills.py
+py -3.12 restore_skills.py --approved
+
 # Choose any local installation directory. Nothing downloads in this step.
 py -3.12 bootstrap.py configure --comfy-root "$env:USERPROFILE\AI\ComfyUI"
 
@@ -62,6 +67,53 @@ generated decoder path, and skip `comfy`. Keep using that installation's own
 trusted launcher. The strict `run-comfy` command below is for the managed,
 locked checkout and refuses unknown source edits or extra custom nodes.
 The bootstrap does not upgrade an unrelated installation.
+
+### Your installed skills and plugins
+
+The [skill catalog](manifests/skills.json) restores **131 standalone skills**:
+126 from eight pinned public repositories and five bundled custom skills.
+Supporting scripts, references, templates and Video Shotcraft assets are included.
+The 15 duplicate copies in the reference profile are consolidated; their content
+matches after line-ending normalization. See [the inventory](docs/skills-inventory.md)
+for names, provenance and license links.
+Open the [HTML setup and verification report](docs/skills-setup.html) locally for
+the full skill list, restore commands and tested limits.
+
+The destination is the selected profile's `.agents/skills`. A matching existing
+skill is left alone. Any differing skill, including a copy in `.codex/skills`,
+stops restoration before publishing the batch; move or reconcile that copy
+explicitly. No existing skills are overwritten or deleted. Preview is read-only.
+The approved restore uses Git and verifies every recorded file's SHA-256 before
+installation. Skills' own runtime tools and dependencies aren't installed by this
+command. The generated `local-harness` skill is installed by `install.py stage`
+below so it points to your actual checkout, giving 132 standalone skills in total.
+
+Plugin skills are restored through Codex, separately from those file snapshots:
+
+```powershell
+py -3.12 restore_skills.py --plugins            # Preview 14 enabled plugins.
+py -3.12 restore_skills.py --plugins --approved
+
+# Optional isolated profile for either command, without changing your real profile.
+py -3.12 restore_skills.py --approved --codex-home .\test-profile\.codex
+```
+
+For a new Ponytail marketplace registration, the plugin command requests the
+recorded revision and calls `codex plugin add` for missing plugins. Existing
+matching marketplace registrations are preserved, including an unpinned one.
+Existing enabled plugins stay enabled and aren't reinstalled.
+Host-provided marketplaces are resolved by the destination
+Codex installation; old machine paths and cache files aren't copied. Plugin
+versions are chosen by Codex's available marketplace, not byte-pinned like the
+standalone catalog. Errors are returned individually and an incomplete restore
+exits with status 1. If a host-only plugin isn't available in the CLI, install it
+through the app's Plugins directory. Sign in and reconnect account-backed apps
+there as needed. [OpenAI's plugin documentation](https://developers.openai.com/plugins/build/plugins)
+describes marketplace setup and account connection requirements.
+
+Open a new Codex chat after restoring. Confirm the restored skills appear in the
+skill picker before using them. System skills bundled with Codex are supplied by
+the destination app rather than copied into this repository.
 
 ### Model access and downloads
 

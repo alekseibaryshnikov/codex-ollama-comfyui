@@ -52,3 +52,26 @@ restage/re-activate the integration with verified destination evidence. Installe
 skills contain the actual runner path, so a moved checkout needs re-rendering.
 Do not run two independent harness installations against the same GPU; projects
 should call one installed runner and its shared lease.
+
+## Restoring skills
+
+Run `py -3.12 restore_skills.py` to preview the recorded standalone catalog and
+add `--approved` to fetch pinned sources and install. Use `--codex-home` to
+select a separate profile. A differing skill in either `.agents/skills` or the
+legacy `.codex/skills` stops the batch before publication. Compare and move that
+copy yourself if you want the recorded version; recovery never overwrites it.
+If publication is interrupted, already published complete skills remain valid;
+rerun to finish. Unrelated skill folders aren't deleted.
+
+Use `--plugins --approved` for recorded plugins. Existing enabled plugins and
+matching registered marketplaces are retained. A same-name marketplace with a
+different source or explicit revision is preserved with an error. The command
+doesn't change it to force installation. Native plugin installation may update
+the selected profile's config and cache; it doesn't use the harness activation
+backup. Review the JSON result and retry missing plugins after resolving the
+reported problem. Use Codex's plugin browser to remove a plugin if needed.
+
+System skills and account-backed app connections come from the destination
+Codex installation. Open a new chat and check discovery. Don't copy plugin
+caches or authentication files from an old Windows account. Skill-specific
+runtime dependencies remain separate setup tasks.

@@ -1,0 +1,3 @@
+interface:
+  display_name: "SDD + TDD"
+  short_description: "Source contracts, documented tests, and strict TDD"

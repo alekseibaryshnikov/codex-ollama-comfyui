@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-10",
+  "marketplaces": [
+    {
+      "name": "ponytail",
+      "source": "DietrichGebert/ponytail",
+      "ref": "96608e078b2d5ea607c5c3b8b5a54d1c1fba6846"
+    }
+  ],
+  "plugins": [
+    "documents@openai-primary-runtime",
+    "spreadsheets@openai-primary-runtime",
+    "presentations@openai-primary-runtime",
+    "github@openai-curated",
+    "chrome@openai-bundled",
+    "pdf@openai-primary-runtime",
+    "template-creator@openai-primary-runtime",
+    "codex-app-tools@openai-bundled",
+    "unified-computer-use@openai-bundled",
+    "visualize@openai-bundled",
+    "computer-use@openai-bundled",
+    "code-review@openai-bundled",
+    "browser@openai-bundled",
+    "ponytail@ponytail"
+  ],
+  "notes": [
+    "Host-provided marketplace paths are resolved by the destination Codex installation, never copied from the reference profile.",
+    "Connected cloud apps require account sign-in and any requested connection approval in the app.",
+    "Native plugin add resolves destination-available versions. This is not a byte-pinned plugin cache restore."
+  ]
+}
