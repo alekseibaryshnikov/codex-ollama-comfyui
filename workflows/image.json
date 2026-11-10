@@ -1,0 +1,177 @@
+{
+  "kind": "image",
+  "output_nodes": [
+    "save"
+  ],
+  "defaults": {
+    "seed": 1,
+    "steps": 20,
+    "cfg": 7.0,
+    "negative_prompt": "",
+    "width": 1024,
+    "height": 1024
+  },
+  "bindings": {
+    "prompt": [
+      [
+        "positive",
+        "text"
+      ]
+    ],
+    "negative_prompt": [
+      [
+        "negative",
+        "text"
+      ]
+    ],
+    "seed": [
+      [
+        "sample",
+        "seed"
+      ]
+    ],
+    "steps": [
+      [
+        "sample",
+        "steps"
+      ]
+    ],
+    "cfg": [
+      [
+        "sample",
+        "cfg"
+      ]
+    ],
+    "width": [
+      [
+        "latent",
+        "width"
+      ]
+    ],
+    "height": [
+      [
+        "latent",
+        "height"
+      ]
+    ],
+    "filename_prefix": [
+      [
+        "save",
+        "filename_prefix"
+      ]
+    ]
+  },
+  "ranges": {
+    "seed": [
+      0,
+      18446744073709551615,
+      1
+    ],
+    "steps": [
+      1,
+      200,
+      1
+    ],
+    "cfg": [
+      0,
+      30,
+      0
+    ],
+    "width": [
+      64,
+      2048,
+      64
+    ],
+    "height": [
+      64,
+      2048,
+      64
+    ]
+  },
+  "prompt": {
+    "model": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors"
+      }
+    },
+    "positive": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": [
+          "model",
+          1
+        ],
+        "text": ""
+      }
+    },
+    "negative": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": [
+          "model",
+          1
+        ],
+        "text": ""
+      }
+    },
+    "latent": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1
+      }
+    },
+    "sample": {
+      "class_type": "KSampler",
+      "inputs": {
+        "seed": 1,
+        "steps": 20,
+        "cfg": 7,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1,
+        "model": [
+          "model",
+          0
+        ],
+        "positive": [
+          "positive",
+          0
+        ],
+        "negative": [
+          "negative",
+          0
+        ],
+        "latent_image": [
+          "latent",
+          0
+        ]
+      }
+    },
+    "decode": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "sample",
+          0
+        ],
+        "vae": [
+          "model",
+          2
+        ]
+      }
+    },
+    "save": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "images": [
+          "decode",
+          0
+        ],
+        "filename_prefix": "harness/image"
+      }
+    }
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "kind": "audio",
+  "output_nodes": [
+    "save"
+  ],
+  "defaults": {
+    "seed": 1,
+    "steps": 50,
+    "cfg": 5.0,
+    "duration": 10.0,
+    "lyrics": ""
+  },
+  "bindings": {
+    "seed": [
+      [
+        "sample",
+        "seed"
+      ]
+    ],
+    "steps": [
+      [
+        "sample",
+        "steps"
+      ]
+    ],
+    "cfg": [
+      [
+        "sample",
+        "cfg"
+      ]
+    ],
+    "prompt": [
+      [
+        "positive",
+        "tags"
+      ]
+    ],
+    "lyrics": [
+      [
+        "positive",
+        "lyrics"
+      ]
+    ],
+    "duration": [
+      [
+        "latent",
+        "seconds"
+      ]
+    ],
+    "filename_prefix": [
+      [
+        "save",
+        "filename_prefix"
+      ]
+    ]
+  },
+  "ranges": {
+    "seed": [
+      0,
+      18446744073709551615,
+      1
+    ],
+    "steps": [
+      1,
+      200,
+      1
+    ],
+    "cfg": [
+      0,
+      30,
+      0
+    ],
+    "duration": [
+      1,
+      180,
+      0
+    ]
+  },
+  "prompt": {
+    "model": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "ace_step_v1_3.5b.safetensors"
+      }
+    },
+    "positive": {
+      "class_type": "TextEncodeAceStepAudio",
+      "inputs": {
+        "clip": [
+          "model",
+          1
+        ],
+        "tags": "",
+        "lyrics": "",
+        "lyrics_strength": 1.0
+      }
+    },
+    "negative": {
+      "class_type": "ConditioningZeroOut",
+      "inputs": {
+        "conditioning": [
+          "positive",
+          0
+        ]
+      }
+    },
+    "latent": {
+      "class_type": "EmptyAceStepLatentAudio",
+      "inputs": {
+        "seconds": 10,
+        "batch_size": 1
+      }
+    },
+    "sample": {
+      "class_type": "KSampler",
+      "inputs": {
+        "seed": 1,
+        "steps": 50,
+        "cfg": 5.0,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "denoise": 1,
+        "model": [
+          "guided",
+          0
+        ],
+        "positive": [
+          "positive",
+          0
+        ],
+        "negative": [
+          "negative",
+          0
+        ],
+        "latent_image": [
+          "latent",
+          0
+        ]
+      }
+    },
+    "decode": {
+      "class_type": "VAEDecodeAudio",
+      "inputs": {
+        "samples": [
+          "sample",
+          0
+        ],
+        "vae": [
+          "model",
+          2
+        ]
+      }
+    },
+    "save": {
+      "class_type": "SaveAudio",
+      "inputs": {
+        "audio": [
+          "decode",
+          0
+        ],
+        "filename_prefix": "harness/music"
+      }
+    },
+    "flow": {
+      "class_type": "ModelSamplingSD3",
+      "inputs": {
+        "model": [
+          "model",
+          0
+        ],
+        "shift": 5.0
+      }
+    },
+    "tonemap": {
+      "class_type": "LatentOperationTonemapReinhard",
+      "inputs": {
+        "multiplier": 1.0
+      }
+    },
+    "guided": {
+      "class_type": "LatentApplyOperationCFG",
+      "inputs": {
+        "model": [
+          "flow",
+          0
+        ],
+        "operation": [
+          "tonemap",
+          0
+        ]
+      }
+    }
+  }
+}

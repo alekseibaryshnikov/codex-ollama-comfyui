@@ -1,0 +1,198 @@
+{
+  "kind": "image",
+  "output_nodes": [
+    "save"
+  ],
+  "required_inputs": [
+    "prompt",
+    "reference_image"
+  ],
+  "defaults": {
+    "seed": 1
+  },
+  "bindings": {
+    "prompt": [
+      [
+        "positive",
+        "prompt"
+      ]
+    ],
+    "seed": [
+      [
+        "sample",
+        "seed"
+      ]
+    ],
+    "reference_image": [
+      [
+        "reference",
+        "image"
+      ]
+    ],
+    "filename_prefix": [
+      [
+        "save",
+        "filename_prefix"
+      ]
+    ]
+  },
+  "ranges": {
+    "seed": [
+      0,
+      18446744073709551615,
+      1
+    ]
+  },
+  "prompt": {
+    "unet": {
+      "class_type": "UNETLoader",
+      "inputs": {
+        "unet_name": "qwen_image_edit_2511_int8_convrot.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    "accel": {
+      "class_type": "LoraLoaderModelOnly",
+      "inputs": {
+        "model": [
+          "unet",
+          0
+        ],
+        "lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors",
+        "strength_model": 1.0
+      }
+    },
+    "shift": {
+      "class_type": "ModelSamplingAuraFlow",
+      "inputs": {
+        "model": [
+          "accel",
+          0
+        ],
+        "shift": 3.1
+      }
+    },
+    "clip": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+        "type": "qwen_image",
+        "device": "default"
+      }
+    },
+    "vae": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "qwen_image_vae.safetensors"
+      }
+    },
+    "reference": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": ""
+      }
+    },
+    "scale": {
+      "class_type": "ImageScaleToTotalPixels",
+      "inputs": {
+        "image": [
+          "reference",
+          0
+        ],
+        "upscale_method": "lanczos",
+        "megapixels": 1.0,
+        "resolution_steps": 32
+      }
+    },
+    "positive": {
+      "class_type": "TextEncodeQwenImageEditPlus",
+      "inputs": {
+        "clip": [
+          "clip",
+          0
+        ],
+        "prompt": "",
+        "vae": [
+          "vae",
+          0
+        ],
+        "image1": [
+          "scale",
+          0
+        ]
+      }
+    },
+    "negative": {
+      "class_type": "ConditioningZeroOut",
+      "inputs": {
+        "conditioning": [
+          "positive",
+          0
+        ]
+      }
+    },
+    "latent": {
+      "class_type": "VAEEncode",
+      "inputs": {
+        "pixels": [
+          "scale",
+          0
+        ],
+        "vae": [
+          "vae",
+          0
+        ]
+      }
+    },
+    "sample": {
+      "class_type": "KSampler",
+      "inputs": {
+        "model": [
+          "shift",
+          0
+        ],
+        "seed": 1,
+        "steps": 4,
+        "cfg": 1.0,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "positive": [
+          "positive",
+          0
+        ],
+        "negative": [
+          "negative",
+          0
+        ],
+        "latent_image": [
+          "latent",
+          0
+        ],
+        "denoise": 1.0
+      }
+    },
+    "decode": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "sample",
+          0
+        ],
+        "vae": [
+          "vae",
+          0
+        ]
+      }
+    },
+    "save": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "images": [
+          "decode",
+          0
+        ],
+        "filename_prefix": "harness/image_edit"
+      }
+    }
+  }
+}

@@ -1,0 +1,1423 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "purpose": "image-weights",
+      "presets": [
+        "image"
+      ],
+      "filename": "Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors",
+      "source": "https://huggingface.co/RunDiffusion/Juggernaut-XL-v9/resolve/cf419233522daa0b9ea36c3aff98fa2cab1fb0fb/Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors",
+      "destination_root": "comfy",
+      "destination": "models/checkpoints/Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors",
+      "size_bytes": 7105348188,
+      "sha256": "c9e3e68f89b8e38689e1097d4be4573cf308de4e3fd044c64ca697bdb4aa8bca",
+      "revision": "cf419233522daa0b9ea36c3aff98fa2cab1fb0fb",
+      "license": "creativeml-openrail-m",
+      "license_url": "https://huggingface.co/RunDiffusion/Juggernaut-XL-v9/blob/cf419233522daa0b9ea36c3aff98fa2cab1fb0fb/README.md",
+      "gated": false,
+      "agreement_required": false
+    },
+    {
+      "purpose": "music-weights",
+      "presets": [
+        "music"
+      ],
+      "filename": "ace_step_v1_3.5b.safetensors",
+      "source": "https://huggingface.co/Comfy-Org/ACE-Step_ComfyUI_repackaged/resolve/ea4f3d349e84d5c098cc8e8b904a30fde59fc99a/all_in_one/ace_step_v1_3.5b.safetensors",
+      "destination_root": "comfy",
+      "destination": "models/checkpoints/ace_step_v1_3.5b.safetensors",
+      "size_bytes": 7699743341,
+      "sha256": "f07cad74c4adce52ca14ca1bdf74cf3c14cbafb0823b95eca4459467fa369f40",
+      "revision": "ea4f3d349e84d5c098cc8e8b904a30fde59fc99a",
+      "license": "apache-2.0",
+      "license_url": "https://huggingface.co/Comfy-Org/ACE-Step_ComfyUI_repackaged/blob/ea4f3d349e84d5c098cc8e8b904a30fde59fc99a/README.md",
+      "gated": false,
+      "agreement_required": false
+    },
+    {
+      "purpose": "image_edit-weights",
+      "presets": [
+        "image_edit"
+      ],
+      "filename": "qwen_image_edit_2511_int8_convrot.safetensors",
+      "source": "https://huggingface.co/Comfy-Org/Qwen-Image-Edit/resolve/f68ace85e60b4a02a323e394253731947657b7d2/split_files/diffusion_models/qwen_image_edit_2511_int8_convrot.safetensors",
+      "destination_root": "comfy",
+      "destination": "models/diffusion_models/qwen_image_edit_2511_int8_convrot.safetensors",
+      "size_bytes": 20499083824,
+      "sha256": "11b5af5ac601821d73930c84846c9a158e67177356daf927ce1c8d10f3963829",
+      "revision": "f68ace85e60b4a02a323e394253731947657b7d2",
+      "license": "apache-2.0",
+      "license_url": "https://huggingface.co/Comfy-Org/Qwen-Image-Edit/blob/f68ace85e60b4a02a323e394253731947657b7d2/README.md",
+      "gated": false,
+      "agreement_required": false
+    },
+    {
+      "purpose": "image_edit-weights",
+      "presets": [
+        "image_edit"
+      ],
+      "filename": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "source": "https://huggingface.co/Comfy-Org/HunyuanVideo_1.5_repackaged/resolve/1405a2b738c29b890cf6d03fc038d8d3e92eeed7/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "destination_root": "comfy",
+      "destination": "models/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "size_bytes": 9384670680,
+      "sha256": "cb5636d852a0ea6a9075ab1bef496c0db7aef13c02350571e388aea959c5c0b4",
+      "revision": "1405a2b738c29b890cf6d03fc038d8d3e92eeed7",
+      "license": "tencent-hunyuan-community",
+      "license_url": "https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5/blob/master/LICENSE",
+      "gated": false,
+      "agreement_required": false
+    },
+    {
+      "purpose": "image_edit-weights",
+      "presets": [
+        "image_edit"
+      ],
+      "filename": "qwen_image_vae.safetensors",
+      "source": "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/1f12b17be14c89b026c51a91d67c32f84bb047bc/split_files/vae/qwen_image_vae.safetensors",
+      "destination_root": "comfy",
+      "destination": "models/vae/qwen_image_vae.safetensors",
+      "size_bytes": 253806246,
+      "sha256": "a70580f0213e67967ee9c95f05bb400e8fb08307e017a924bf3441223e023d1f",
+      "revision": "1f12b17be14c89b026c51a91d67c32f84bb047bc",
+      "license": "apache-2.0",
+      "license_url": "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/blob/1f12b17be14c89b026c51a91d67c32f84bb047bc/README.md",
+      "gated": false,
+      "agreement_required": false
+    },
+    {
+      "purpose": "image_edit-weights",
+      "presets": [
+        "image_edit"
+      ],
+      "filename": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors",
+      "source": "https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning/resolve/107d238d68b8387e32843d0b4a2e24ceb0d3ad86/Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors",
+      "destination_root": "comfy",
+      "destination": "models/loras/Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors",
+      "size_bytes": 849608296,
+      "sha256": "22226e8d05d354bb356627d428809f5afd7819399b077238a2b70a82883a904f",
+      "revision": "107d238d68b8387e32843d0b4a2e24ceb0d3ad86",
+      "license": "apache-2.0",
+      "license_url": "https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning/blob/107d238d68b8387e32843d0b4a2e24ceb0d3ad86/README.md",
+      "gated": false,
+      "agreement_required": false
+    },
+    {
+      "purpose": "video-weights",
+      "presets": [
+        "video",
+        "video_edit"
+      ],
+      "filename": "ltx-2.5-22b-distilled-transformer-nvfp4.safetensors",
+      "source": "https://huggingface.co/Lightricks/LTX-2.5/resolve/49b093a39c19169a8a81721dcc541e07e945232f/diffusion_models/ltx-2.5-22b-distilled-transformer-nvfp4.safetensors",
+      "destination_root": "comfy",
+      "destination": "models/diffusion_models/ltx-2.5-22b-distilled-transformer-nvfp4.safetensors",
+      "size_bytes": 18721548408,
+      "sha256": "4b94231e734c1950f8f6826cb8bd8715d94be5b3e04f8256ee060c5bc3886c30",
+      "revision": "49b093a39c19169a8a81721dcc541e07e945232f",
+      "license": "ltx-2.x-community-license-agreement",
+      "license_url": "https://github.com/Lightricks/LTX-2/blob/main/LICENSE-2_x",
+      "gated": "auto",
+      "agreement_required": true
+    },
+    {
+      "purpose": "video-weights",
+      "presets": [
+        "video",
+        "video_edit"
+      ],
+      "filename": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "source": "https://huggingface.co/Lightricks/LTX-2.5/resolve/49b093a39c19169a8a81721dcc541e07e945232f/text_encoders/gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "destination_root": "comfy",
+      "destination": "models/text_encoders/gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "size_bytes": 15372969374,
+      "sha256": "6ce688a0aa98a5fa36a9f1e6c3f42152a498cc2b53ee8c15674c64244f91487f",
+      "revision": "49b093a39c19169a8a81721dcc541e07e945232f",
+      "license": "ltx-2.x-community-license-agreement",
+      "license_url": "https://github.com/Lightricks/LTX-2/blob/main/LICENSE-2_x",
+      "gated": "auto",
+      "agreement_required": true
+    },
+    {
+      "purpose": "video-weights",
+      "presets": [
+        "video",
+        "video_edit"
+      ],
+      "filename": "ltx-2.5-audio-vae-bf16.safetensors",
+      "source": "https://huggingface.co/Lightricks/LTX-2.5/resolve/49b093a39c19169a8a81721dcc541e07e945232f/vae/ltx-2.5-audio-vae-bf16.safetensors",
+      "destination_root": "comfy",
+      "destination": "models/vae/ltx-2.5-audio-vae-bf16.safetensors",
+      "size_bytes": 364866540,
+      "sha256": "c52733d37f6a7fb7949c3dc0fb468c6cb2169e4d836983a73babb9f0d54837a5",
+      "revision": "49b093a39c19169a8a81721dcc541e07e945232f",
+      "license": "ltx-2.x-community-license-agreement",
+      "license_url": "https://github.com/Lightricks/LTX-2/blob/main/LICENSE-2_x",
+      "gated": "auto",
+      "agreement_required": true
+    },
+    {
+      "purpose": "video-weights",
+      "presets": [
+        "video",
+        "video_edit"
+      ],
+      "filename": "ltx-2.5-video-vae-conv-bf16.safetensors",
+      "source": "https://huggingface.co/Lightricks/LTX-2.5/resolve/49b093a39c19169a8a81721dcc541e07e945232f/vae/ltx-2.5-video-vae-conv-bf16.safetensors",
+      "destination_root": "comfy",
+      "destination": "models/vae/ltx-2.5-video-vae-conv-bf16.safetensors",
+      "size_bytes": 1452269922,
+      "sha256": "685b06ee3d9b2039647698fc4ea33175112462fc374e2777312c907897dfce8d",
+      "revision": "49b093a39c19169a8a81721dcc541e07e945232f",
+      "license": "ltx-2.x-community-license-agreement",
+      "license_url": "https://github.com/Lightricks/LTX-2/blob/main/LICENSE-2_x",
+      "gated": "auto",
+      "agreement_required": true
+    },
+    {
+      "purpose": "speech-node",
+      "filename": "ComfyUIKokoro.py",
+      "source": "https://raw.githubusercontent.com/stavsap/comfyui-kokoro/cfb59b5605b351e196182c836f0b48c1a784e52f/ComfyUIKokoro.py",
+      "destination": "custom_nodes/comfyui-kokoro/ComfyUIKokoro.py",
+      "size_bytes": 8211,
+      "sha256": "b08e49d09929723cbb92182c59d25a6a801f8c56a5732485c1ab7d8df1a909aa",
+      "revision": "cfb59b5605b351e196182c836f0b48c1a784e52f",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "comfy",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://github.com/stavsap/comfyui-kokoro/blob/cfb59b5605b351e196182c836f0b48c1a784e52f/LICENSE",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-node",
+      "filename": "__init__.py",
+      "source": "https://raw.githubusercontent.com/stavsap/comfyui-kokoro/cfb59b5605b351e196182c836f0b48c1a784e52f/__init__.py",
+      "destination": "custom_nodes/comfyui-kokoro/__init__.py",
+      "size_bytes": 139,
+      "sha256": "4db7cad47179066464bb61900161ef04bb89fbdad10107c4d49b8e0ca08678cb",
+      "revision": "cfb59b5605b351e196182c836f0b48c1a784e52f",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "comfy",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://github.com/stavsap/comfyui-kokoro/blob/cfb59b5605b351e196182c836f0b48c1a784e52f/LICENSE",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-node",
+      "filename": "requirements.txt",
+      "source": "https://raw.githubusercontent.com/stavsap/comfyui-kokoro/cfb59b5605b351e196182c836f0b48c1a784e52f/requirements.txt",
+      "destination": "custom_nodes/comfyui-kokoro/requirements.txt",
+      "size_bytes": 44,
+      "sha256": "9eeb012a25026d16420d8b95c608e61fe6cba3ec1ac62ee8234a6920f40439d3",
+      "revision": "cfb59b5605b351e196182c836f0b48c1a784e52f",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "comfy",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://github.com/stavsap/comfyui-kokoro/blob/cfb59b5605b351e196182c836f0b48c1a784e52f/LICENSE",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-node",
+      "filename": "pyproject.toml",
+      "source": "https://raw.githubusercontent.com/stavsap/comfyui-kokoro/cfb59b5605b351e196182c836f0b48c1a784e52f/pyproject.toml",
+      "destination": "custom_nodes/comfyui-kokoro/pyproject.toml",
+      "size_bytes": 476,
+      "sha256": "002919b773202146af12caf5e736f2228c55261fdd8b19206829c265e80b26cc",
+      "revision": "cfb59b5605b351e196182c836f0b48c1a784e52f",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "comfy",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://github.com/stavsap/comfyui-kokoro/blob/cfb59b5605b351e196182c836f0b48c1a784e52f/LICENSE",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-node",
+      "filename": "LICENSE",
+      "source": "https://raw.githubusercontent.com/stavsap/comfyui-kokoro/cfb59b5605b351e196182c836f0b48c1a784e52f/LICENSE",
+      "destination": "custom_nodes/comfyui-kokoro/LICENSE",
+      "size_bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "revision": "cfb59b5605b351e196182c836f0b48c1a784e52f",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "comfy",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://github.com/stavsap/comfyui-kokoro/blob/cfb59b5605b351e196182c836f0b48c1a784e52f/LICENSE",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-node",
+      "filename": "README.md",
+      "source": "https://raw.githubusercontent.com/stavsap/comfyui-kokoro/cfb59b5605b351e196182c836f0b48c1a784e52f/README.md",
+      "destination": "custom_nodes/comfyui-kokoro/README.md",
+      "size_bytes": 2643,
+      "sha256": "e64a2537cfda1c1e8fd1c494533af108416ec1eb0d8012a43740d0d62f534371",
+      "revision": "cfb59b5605b351e196182c836f0b48c1a784e52f",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "comfy",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://github.com/stavsap/comfyui-kokoro/blob/cfb59b5605b351e196182c836f0b48c1a784e52f/LICENSE",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-model",
+      "filename": "kokoro_v1.onnx",
+      "source": "https://github.com/taylorchu/kokoro-onnx/releases/download/v0.2.0/kokoro.onnx",
+      "destination": "custom_nodes/comfyui-kokoro/kokoro_v1.onnx",
+      "size_bytes": 325532387,
+      "sha256": "7d5df8ecf7d4b1878015a32686053fd0eebe2bc377234608764cc0ef3636a6c5",
+      "revision": "v0.2.0",
+      "license": "Apache-2.0 (Kokoro model); ONNX conversion project MIT",
+      "gated": false,
+      "checksum_note": "SHA-256 measured on the installed release asset. The release metadata supplies the byte count and has no asset digest.",
+      "destination_root": "comfy",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://github.com/taylorchu/kokoro-onnx/releases/tag/v0.2.0",
+      "agreement_required": false
+    },
+    {
+      "purpose": "sfx-model",
+      "filename": "stable_audio_open_1.0.safetensors",
+      "source": "https://huggingface.co/stabilityai/stable-audio-open-1.0/resolve/f21265c1e2710b3bd2386596943f0007f55f802e/model.safetensors",
+      "destination": "models/checkpoints/stable_audio_open_1.0.safetensors",
+      "size_bytes": 4853889016,
+      "sha256": "7b20458a071231aaf32613b6fbc7945f28f34dbba4f295bb49bad56f5f66b57e",
+      "revision": "f21265c1e2710b3bd2386596943f0007f55f802e",
+      "license": "stable-audio-community",
+      "license_url": "https://huggingface.co/stabilityai/stable-audio-open-1.0/blob/f21265c1e2710b3bd2386596943f0007f55f802e/LICENSE.md",
+      "gated": "auto",
+      "agreement_required": true,
+      "destination_root": "comfy",
+      "presets": [
+        "sfx"
+      ]
+    },
+    {
+      "purpose": "sfx-text-encoder",
+      "filename": "t5_base.safetensors",
+      "source": "https://huggingface.co/google-t5/t5-base/resolve/a9723ea7f1b39c1eae772870f3b547bf6ef7e6c1/model.safetensors",
+      "destination": "models/text_encoders/t5_base.safetensors",
+      "size_bytes": 891646390,
+      "sha256": "a90903540cc02cbeb7ff9f823f1a80eb778c7e22426a0e620b01c77a5ec8f5b4",
+      "revision": "a9723ea7f1b39c1eae772870f3b547bf6ef7e6c1",
+      "license": "apache-2.0",
+      "license_url": "https://huggingface.co/google-t5/t5-base",
+      "gated": false,
+      "agreement_required": false,
+      "destination_root": "comfy",
+      "presets": [
+        "sfx"
+      ]
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "af_heart.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/af_heart.pt",
+      "destination": "kokoro-voices/af_heart.pt",
+      "size_bytes": 523425,
+      "sha256": "0ab5709b8ffab19bfd849cd11d98f75b60af7733253ad0d67b12382a102cb4ff",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "af_alloy.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/af_alloy.pt",
+      "destination": "kokoro-voices/af_alloy.pt",
+      "size_bytes": 523425,
+      "sha256": "6d877149dd8b348fbad12e5845b7e43d975390e9f3b68a811d1d86168bef5aa3",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "af_aoede.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/af_aoede.pt",
+      "destination": "kokoro-voices/af_aoede.pt",
+      "size_bytes": 523425,
+      "sha256": "c03bd1a4c3716c2d8eaa3d50022f62d5c31cfbd6e15933a00b17fefe13841cc4",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "af_bella.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/af_bella.pt",
+      "destination": "kokoro-voices/af_bella.pt",
+      "size_bytes": 523425,
+      "sha256": "8cb64e02fcc8de0327a8e13817e49c76c945ecf0052ceac97d3081480e8e48d6",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "af_jessica.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/af_jessica.pt",
+      "destination": "kokoro-voices/af_jessica.pt",
+      "size_bytes": 523435,
+      "sha256": "cdfdccb8cc975aa34ee6b89642963b0064237675de0e41a30ae64cc958dd4e87",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "af_kore.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/af_kore.pt",
+      "destination": "kokoro-voices/af_kore.pt",
+      "size_bytes": 523420,
+      "sha256": "8bfbc512321c3db49dff984ac675fa5ac7eaed5a96cc31104d3a9080e179d69d",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "af_nicole.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/af_nicole.pt",
+      "destination": "kokoro-voices/af_nicole.pt",
+      "size_bytes": 523430,
+      "sha256": "c5561808bcf5250fe8c5f5de32caf2d94f27e57e95befdb098c5c85991d4c5da",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "af_nova.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/af_nova.pt",
+      "destination": "kokoro-voices/af_nova.pt",
+      "size_bytes": 523420,
+      "sha256": "e0233676ddc21908c37a1f102f6b88a59e4e5c1bd764983616eb9eda629dbcd2",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "af_river.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/af_river.pt",
+      "destination": "kokoro-voices/af_river.pt",
+      "size_bytes": 523425,
+      "sha256": "e149459bd9c084416b74756b9bd3418256a8b839088abb07d463730c369dab8f",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "af_sarah.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/af_sarah.pt",
+      "destination": "kokoro-voices/af_sarah.pt",
+      "size_bytes": 523425,
+      "sha256": "49bd364ea3be9eb3e9685e8f9a15448c4883112a7c0ff7ab139fa4088b08cef9",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "af_sky.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/af_sky.pt",
+      "destination": "kokoro-voices/af_sky.pt",
+      "size_bytes": 523351,
+      "sha256": "c799548aed06e0cb0d655a85a01b48e7f10484d71663f9a3045a5b9362e8512c",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "am_adam.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/am_adam.pt",
+      "destination": "kokoro-voices/am_adam.pt",
+      "size_bytes": 523420,
+      "sha256": "ced7e284aba12472891be1da3ab34db84cc05cc02b5889535796dbf2d8b0cb34",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "am_echo.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/am_echo.pt",
+      "destination": "kokoro-voices/am_echo.pt",
+      "size_bytes": 523420,
+      "sha256": "8bcfdc852bc985fb45c396c561e571ffb9183930071f962f1b50df5c97b161e8",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "am_eric.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/am_eric.pt",
+      "destination": "kokoro-voices/am_eric.pt",
+      "size_bytes": 523420,
+      "sha256": "ada66f0eefff34ec921b1d7474d7ac8bec00cd863c170f1c534916e9b8212aae",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "am_fenrir.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/am_fenrir.pt",
+      "destination": "kokoro-voices/am_fenrir.pt",
+      "size_bytes": 523430,
+      "sha256": "98e507eca1db08230ae3b6232d59c10aec9630022d19accac4f5d12fcec3c37a",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "am_liam.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/am_liam.pt",
+      "destination": "kokoro-voices/am_liam.pt",
+      "size_bytes": 523420,
+      "sha256": "c82550757ddb31308b97f30040dda8c2d609a9e2de6135848d0a948368138518",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "am_michael.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/am_michael.pt",
+      "destination": "kokoro-voices/am_michael.pt",
+      "size_bytes": 523435,
+      "sha256": "9a443b79a4b22489a5b0ab7c651a0bcd1a30bef675c28333f06971abbd47bd37",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "am_onyx.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/am_onyx.pt",
+      "destination": "kokoro-voices/am_onyx.pt",
+      "size_bytes": 523420,
+      "sha256": "e8452be16cd0f6da7b4579eaf7b1e4506e92524882053d86d72b96b9a7fed584",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "am_puck.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/am_puck.pt",
+      "destination": "kokoro-voices/am_puck.pt",
+      "size_bytes": 523420,
+      "sha256": "dd1d8973f4ce4b7d8ae407c77a435f485dabc052081b80ea75c4f30b84f36223",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "am_santa.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/am_santa.pt",
+      "destination": "kokoro-voices/am_santa.pt",
+      "size_bytes": 523425,
+      "sha256": "7f2f7582fa2b1f160e90aafe6d0b442a685e773608b6667e545d743b073e97a7",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "bf_alice.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/bf_alice.pt",
+      "destination": "kokoro-voices/bf_alice.pt",
+      "size_bytes": 523425,
+      "sha256": "d292651b6af6c0d81705c2580dcb4463fccc0ff7b8d618a471dbb4e45655b3f3",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "bf_emma.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/bf_emma.pt",
+      "destination": "kokoro-voices/bf_emma.pt",
+      "size_bytes": 523420,
+      "sha256": "d0a423deabf4a52b4f49318c51742c54e21bb89bbbe9a12141e7758ddb5da701",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "bf_isabella.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/bf_isabella.pt",
+      "destination": "kokoro-voices/bf_isabella.pt",
+      "size_bytes": 523440,
+      "sha256": "cdd4c37003805104d1d08fb1e05855c8fb2c68de24ca6e71f264a30aaa59eefd",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "bf_lily.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/bf_lily.pt",
+      "destination": "kokoro-voices/bf_lily.pt",
+      "size_bytes": 523420,
+      "sha256": "6e09c2e481e2d53004d7e5ae7d3a325369e130a6f45c35a6002de75084be9285",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "bm_daniel.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/bm_daniel.pt",
+      "destination": "kokoro-voices/bm_daniel.pt",
+      "size_bytes": 523430,
+      "sha256": "fc3fce4e9c12ed4dbc8fa9680cfe51ee190a96444ce7c3ad647549a30823fc5d",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "bm_fable.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/bm_fable.pt",
+      "destination": "kokoro-voices/bm_fable.pt",
+      "size_bytes": 523425,
+      "sha256": "d44935f3135257a9064df99f007fc1342ff1aa767552b4a4fa4c3b2e6e59079c",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "bm_george.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/bm_george.pt",
+      "destination": "kokoro-voices/bm_george.pt",
+      "size_bytes": 523430,
+      "sha256": "f1bc812213dc59774769e5c80004b13eeb79bd78130b11b2d7f934542dab811b",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "bm_lewis.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/bm_lewis.pt",
+      "destination": "kokoro-voices/bm_lewis.pt",
+      "size_bytes": 523425,
+      "sha256": "b5204750dcba01029d2ac9cec17aec3b20a6d64073c579d694a23cb40effbd0e",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "jf_alpha.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/jf_alpha.pt",
+      "destination": "kokoro-voices/jf_alpha.pt",
+      "size_bytes": 523425,
+      "sha256": "1bf4c9dc69e45ee46183b071f4db766349aac5592acbcfeaf051018048a5d787",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "jf_gongitsune.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/jf_gongitsune.pt",
+      "destination": "kokoro-voices/jf_gongitsune.pt",
+      "size_bytes": 523351,
+      "sha256": "1b171917f18f351e65f2bf9657700cd6bfec4e65589c297525b9cf3c20105770",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "jf_nezumi.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/jf_nezumi.pt",
+      "destination": "kokoro-voices/jf_nezumi.pt",
+      "size_bytes": 523420,
+      "sha256": "d83f007a7f01783b77014561a7d493d327a0210e143440e91c9b697590d27661",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "jf_tebukuro.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/jf_tebukuro.pt",
+      "destination": "kokoro-voices/jf_tebukuro.pt",
+      "size_bytes": 523435,
+      "sha256": "0d6917904438aec85f73a6fa1f7ac2be6481aae47c697834936930a91796c576",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "jm_kumo.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/jm_kumo.pt",
+      "destination": "kokoro-voices/jm_kumo.pt",
+      "size_bytes": 523425,
+      "sha256": "98340afd68b1cee84fe0cd95528cfa6d4b39e416aa75a9df64049d52c8b55896",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "zf_xiaobei.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/zf_xiaobei.pt",
+      "destination": "kokoro-voices/zf_xiaobei.pt",
+      "size_bytes": 523435,
+      "sha256": "9b76be63dab4f4f96962030acc0126a9aee9728608fbbe115e2b58a2bd504df6",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "zf_xiaoni.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/zf_xiaoni.pt",
+      "destination": "kokoro-voices/zf_xiaoni.pt",
+      "size_bytes": 523430,
+      "sha256": "95b49f169bf1640f4f43c25e13daa39f7b98d15d00823e83ef5c14b3ced59e49",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "zf_xiaoxiao.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/zf_xiaoxiao.pt",
+      "destination": "kokoro-voices/zf_xiaoxiao.pt",
+      "size_bytes": 523440,
+      "sha256": "cfaf6f2ded1ee56f1ff94fcd2b0e6cdf32e5b794bdc05b44e7439d44aef5887c",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "zf_xiaoyi.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/zf_xiaoyi.pt",
+      "destination": "kokoro-voices/zf_xiaoyi.pt",
+      "size_bytes": 523430,
+      "sha256": "b5235dbaeef85a4c613bf78af9a88ff63c25bac5f26ba77e36186d8b7ebf05e2",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "zm_yunjian.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/zm_yunjian.pt",
+      "destination": "kokoro-voices/zm_yunjian.pt",
+      "size_bytes": 523435,
+      "sha256": "76cbf8bad35901d011d9628a2fdceb7b4f1f127e7a3269cb393b3941eb7fc417",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "zm_yunxi.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/zm_yunxi.pt",
+      "destination": "kokoro-voices/zm_yunxi.pt",
+      "size_bytes": 523425,
+      "sha256": "dbe6e1ce7c3dbaf2f5667432947b638b1c6831ccbe154c4610dbcc44f431e27b",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "zm_yunxia.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/zm_yunxia.pt",
+      "destination": "kokoro-voices/zm_yunxia.pt",
+      "size_bytes": 523430,
+      "sha256": "bb2b03b08e84d64e1214440ce3b624987fac177f2eeb5bab8571799a3d980acd",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "zm_yunyang.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/zm_yunyang.pt",
+      "destination": "kokoro-voices/zm_yunyang.pt",
+      "size_bytes": 523435,
+      "sha256": "5238ac22e0c7f8b6cdd2eddd6e444b8a700b73c4674d9a047d59a94ff96379a2",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "ef_dora.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/ef_dora.pt",
+      "destination": "kokoro-voices/ef_dora.pt",
+      "size_bytes": 523420,
+      "sha256": "d9d69b0f8a2b87a345f269d89639f89dfbd1a6c9da0c498ae36dd34afcf35530",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "em_alex.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/em_alex.pt",
+      "destination": "kokoro-voices/em_alex.pt",
+      "size_bytes": 523420,
+      "sha256": "5eac53f767c3f31a081918ba531969aea850bed18fe56419b804d642c6973431",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "em_santa.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/em_santa.pt",
+      "destination": "kokoro-voices/em_santa.pt",
+      "size_bytes": 523430,
+      "sha256": "aa8620cb96cec705823efca0d956a63e158e09ad41aca934d354b7f0778f63cb",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "ff_siwis.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/ff_siwis.pt",
+      "destination": "kokoro-voices/ff_siwis.pt",
+      "size_bytes": 523425,
+      "sha256": "8073bf2d2c4b9543a90f2f0fd2144de4ed157e2d4b79ddeb0d5123066171fbc9",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "hf_alpha.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/hf_alpha.pt",
+      "destination": "kokoro-voices/hf_alpha.pt",
+      "size_bytes": 523425,
+      "sha256": "06906fe05746d13a79c5c01e21fd7233b05027221a933c9ada650f5aafc8f044",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "hf_beta.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/hf_beta.pt",
+      "destination": "kokoro-voices/hf_beta.pt",
+      "size_bytes": 523420,
+      "sha256": "63c0a1a6272e98d43f4511bba40e30dd9c8ceaf5f39af869509b9f51a71c503e",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "hm_omega.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/hm_omega.pt",
+      "destination": "kokoro-voices/hm_omega.pt",
+      "size_bytes": 523425,
+      "sha256": "b55f02a8e8483fffe0afa566e7d22ed8013acf47ad4f6bbee2795a840155703e",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "hm_psi.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/hm_psi.pt",
+      "destination": "kokoro-voices/hm_psi.pt",
+      "size_bytes": 523351,
+      "sha256": "2f0f055cea4f1083f4ef127ece48d71606347f6557dbb961c0ca5740a2da485b",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "if_sara.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/if_sara.pt",
+      "destination": "kokoro-voices/if_sara.pt",
+      "size_bytes": 523425,
+      "sha256": "6c0b253b955fe32f1a1a86006aebe83d050ea95afd0e7be15182f087deedbf55",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "im_nicola.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/im_nicola.pt",
+      "destination": "kokoro-voices/im_nicola.pt",
+      "size_bytes": 523341,
+      "sha256": "234ed06648649f9bd874b37508ea17560b9c993ef85b4ddb3e3a71e062bd2c12",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "pf_dora.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/pf_dora.pt",
+      "destination": "kokoro-voices/pf_dora.pt",
+      "size_bytes": 523425,
+      "sha256": "07e4ff987c5d5a8c3995efd15cc4f0db7c4c15e881b198d8ab7f67ecf51f5eb7",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "pm_alex.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/pm_alex.pt",
+      "destination": "kokoro-voices/pm_alex.pt",
+      "size_bytes": 523425,
+      "sha256": "cf0ba8c573c2480fc54123683a35cf1e2ae130428e441eb91f9149bdb188a526",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    },
+    {
+      "purpose": "speech-voice-source",
+      "filename": "pm_santa.pt",
+      "source": "https://huggingface.co/hexgrad/Kokoro-82M/resolve/f3ff3571791e39611d31c381e3a41a3af07b4987/voices/pm_santa.pt",
+      "destination": "kokoro-voices/pm_santa.pt",
+      "size_bytes": 523430,
+      "sha256": "d42103169c5c872abbafb9129133af7e942bb9d272c3cc3b95c203e7d7198c29",
+      "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "license": "Apache-2.0",
+      "gated": false,
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "license_url": "https://huggingface.co/hexgrad/Kokoro-82M/blob/f3ff3571791e39611d31c381e3a41a3af07b4987/README.md",
+      "agreement_required": false
+    }
+  ],
+  "python_packages": [
+    {
+      "package": "kokoro-onnx",
+      "version": "0.6.1",
+      "filename": "kokoro_onnx-0.6.1-py3-none-any.whl",
+      "source": "https://files.pythonhosted.org/packages/60/e1/a27e5a70a525a5ee1fd5357596f07b724d02ff317f134e86cb6e3d9db968/kokoro_onnx-0.6.1-py3-none-any.whl",
+      "destination": "wheels/kokoro_onnx-0.6.1-py3-none-any.whl",
+      "size_bytes": 26084,
+      "sha256": "50c8de4950d601df41428ee5462a48c8a78bef441bf671f2492e070ef44d8a32",
+      "license": "MIT",
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "revision": "0.6.1",
+      "gated": false,
+      "agreement_required": false,
+      "license_url": "https://pypi.org/project/kokoro-onnx/0.6.1/"
+    },
+    {
+      "package": "espeakng-loader",
+      "version": "0.2.4",
+      "filename": "espeakng_loader-0.2.4-py3-none-win_amd64.whl",
+      "source": "https://files.pythonhosted.org/packages/9d/ed/a3d872fbad4f3a3f3db0e8c31768ab14e77cd77306de16b8b20b1e1df7ea/espeakng_loader-0.2.4-py3-none-win_amd64.whl",
+      "destination": "wheels/espeakng_loader-0.2.4-py3-none-win_amd64.whl",
+      "size_bytes": 9437292,
+      "sha256": "41f1e08ac9deda2efd1ea9de0b81dab9f5ae3c4b24284f76533d0a7b1dd7abd7",
+      "license": "MIT (loader); bundled eSpeak NG has its own GPL terms",
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "revision": "0.2.4",
+      "gated": false,
+      "agreement_required": false,
+      "license_url": "https://github.com/thewh1teagle/espeakng-loader/blob/main/LICENSE"
+    },
+    {
+      "package": "phonemizer",
+      "version": "3.6.0",
+      "filename": "phonemizer-3.6.0-py3-none-any.whl",
+      "source": "https://files.pythonhosted.org/packages/9b/70/681cea1684270c8d70b4e0fd7f17aaeb4e97fa9fc17b7bc2a6dee6a74e96/phonemizer-3.6.0-py3-none-any.whl",
+      "destination": "wheels/phonemizer-3.6.0-py3-none-any.whl",
+      "size_bytes": 125087,
+      "sha256": "efb0703d3204f334756cafc9c97390c588446469c69214af4092836ca128cbab",
+      "license": "GPL-3.0-or-later",
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "revision": "3.6.0",
+      "gated": false,
+      "agreement_required": false,
+      "license_url": "https://pypi.org/project/phonemizer/3.6.0/"
+    },
+    {
+      "package": "joblib",
+      "version": "1.6.0",
+      "filename": "joblib-1.6.0-py3-none-any.whl",
+      "source": "https://files.pythonhosted.org/packages/18/53/84099323c2ec4be98d935f63c033ac4151ee83836ca1050ede3b3aadf155/joblib-1.6.0-py3-none-any.whl",
+      "destination": "wheels/joblib-1.6.0-py3-none-any.whl",
+      "size_bytes": 306115,
+      "sha256": "3dbbf9f6e4b592a2357b854608e980fe6390d131d7a82f011a377ef2ebef7aba",
+      "license": "BSD-3-Clause",
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "revision": "1.6.0",
+      "gated": false,
+      "agreement_required": false,
+      "license_url": "https://pypi.org/project/joblib/1.6.0/"
+    },
+    {
+      "package": "dlinfo",
+      "version": "2.0.0",
+      "filename": "dlinfo-2.0.0-py3-none-any.whl",
+      "source": "https://files.pythonhosted.org/packages/da/90/022c79d6e5e6f843268c10b84d4a021ee3afba0621d3c176d3ff2024bfc8/dlinfo-2.0.0-py3-none-any.whl",
+      "destination": "wheels/dlinfo-2.0.0-py3-none-any.whl",
+      "size_bytes": 3654,
+      "sha256": "b32cc18e3ea67c0ca9ca409e5b41eed863bd1363dbc9dd3de90fedf11b61e7bc",
+      "license": "MIT",
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "revision": "2.0.0",
+      "gated": false,
+      "agreement_required": false,
+      "license_url": "https://pypi.org/project/dlinfo/2.0.0/"
+    },
+    {
+      "package": "cloudpickle",
+      "version": "3.1.2",
+      "filename": "cloudpickle-3.1.2-py3-none-any.whl",
+      "source": "https://files.pythonhosted.org/packages/88/39/799be3f2f0f38cc727ee3b4f1445fe6d5e4133064ec2e4115069418a5bb6/cloudpickle-3.1.2-py3-none-any.whl",
+      "destination": "wheels/cloudpickle-3.1.2-py3-none-any.whl",
+      "size_bytes": 22228,
+      "sha256": "9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a",
+      "license": "BSD-3-Clause",
+      "destination_root": "downloads",
+      "presets": [
+        "speech"
+      ],
+      "revision": "3.1.2",
+      "gated": false,
+      "agreement_required": false,
+      "license_url": "https://pypi.org/project/cloudpickle/3.1.2/"
+    }
+  ],
+  "voice_assembly": {
+    "source_count": 54,
+    "destination": "custom_nodes/comfyui-kokoro/voices_v1.bin",
+    "method": "Load each approved voice .pt with torch.load(weights_only=True), convert tensor to numpy, np.savez(output, **voices). The upstream node expects this generated archive.",
+    "source_voices": [
+      "af_heart",
+      "af_alloy",
+      "af_aoede",
+      "af_bella",
+      "af_jessica",
+      "af_kore",
+      "af_nicole",
+      "af_nova",
+      "af_river",
+      "af_sarah",
+      "af_sky",
+      "am_adam",
+      "am_echo",
+      "am_eric",
+      "am_fenrir",
+      "am_liam",
+      "am_michael",
+      "am_onyx",
+      "am_puck",
+      "am_santa",
+      "bf_alice",
+      "bf_emma",
+      "bf_isabella",
+      "bf_lily",
+      "bm_daniel",
+      "bm_fable",
+      "bm_george",
+      "bm_lewis",
+      "jf_alpha",
+      "jf_gongitsune",
+      "jf_nezumi",
+      "jf_tebukuro",
+      "jm_kumo",
+      "zf_xiaobei",
+      "zf_xiaoni",
+      "zf_xiaoxiao",
+      "zf_xiaoyi",
+      "zm_yunjian",
+      "zm_yunxi",
+      "zm_yunxia",
+      "zm_yunyang",
+      "ef_dora",
+      "em_alex",
+      "em_santa",
+      "ff_siwis",
+      "hf_alpha",
+      "hf_beta",
+      "hm_omega",
+      "hm_psi",
+      "if_sara",
+      "im_nicola",
+      "pf_dora",
+      "pm_alex",
+      "pm_santa"
+    ],
+    "destination_root": "comfy"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "kind": "audio",
+  "output_nodes": [
+    "save"
+  ],
+  "defaults": {
+    "voice": "af_sarah",
+    "language": "English",
+    "speed": 1.0
+  },
+  "bindings": {
+    "prompt": [
+      [
+        "speech",
+        "text"
+      ]
+    ],
+    "voice": [
+      [
+        "speaker",
+        "speaker_name"
+      ]
+    ],
+    "language": [
+      [
+        "speech",
+        "lang"
+      ]
+    ],
+    "speed": [
+      [
+        "speech",
+        "speed"
+      ]
+    ],
+    "filename_prefix": [
+      [
+        "save",
+        "filename_prefix"
+      ]
+    ]
+  },
+  "ranges": {
+    "speed": [
+      0.1,
+      4,
+      0
+    ]
+  },
+  "prompt": {
+    "speaker": {
+      "class_type": "KokoroSpeaker",
+      "inputs": {
+        "speaker_name": "af_sarah"
+      }
+    },
+    "speech": {
+      "class_type": "KokoroGenerator",
+      "inputs": {
+        "text": "",
+        "speaker": [
+          "speaker",
+          0
+        ],
+        "speed": 1.0,
+        "lang": "English"
+      }
+    },
+    "save": {
+      "class_type": "SaveAudio",
+      "inputs": {
+        "audio": [
+          "speech",
+          0
+        ],
+        "filename_prefix": "harness/speech"
+      }
+    }
+  }
+}

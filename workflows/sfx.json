@@ -1,0 +1,191 @@
+{
+  "kind": "audio",
+  "output_nodes": [
+    "save"
+  ],
+  "defaults": {
+    "seed": 1,
+    "steps": 50,
+    "cfg": 7.0,
+    "negative_prompt": "",
+    "duration": 5.0
+  },
+  "bindings": {
+    "prompt": [
+      [
+        "positive",
+        "text"
+      ]
+    ],
+    "negative_prompt": [
+      [
+        "negative",
+        "text"
+      ]
+    ],
+    "seed": [
+      [
+        "sample",
+        "seed"
+      ]
+    ],
+    "steps": [
+      [
+        "sample",
+        "steps"
+      ]
+    ],
+    "cfg": [
+      [
+        "sample",
+        "cfg"
+      ]
+    ],
+    "duration": [
+      [
+        "latent",
+        "seconds"
+      ],
+      [
+        "timing",
+        "seconds_total"
+      ]
+    ],
+    "filename_prefix": [
+      [
+        "save",
+        "filename_prefix"
+      ]
+    ]
+  },
+  "ranges": {
+    "seed": [
+      0,
+      18446744073709551615,
+      1
+    ],
+    "steps": [
+      1,
+      200,
+      1
+    ],
+    "cfg": [
+      0,
+      30,
+      0
+    ],
+    "duration": [
+      1,
+      47,
+      0
+    ]
+  },
+  "prompt": {
+    "model": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "stable_audio_open_1.0.safetensors"
+      }
+    },
+    "clip": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "t5_base.safetensors",
+        "type": "stable_audio",
+        "device": "cpu"
+      }
+    },
+    "positive": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": [
+          "clip",
+          0
+        ],
+        "text": ""
+      }
+    },
+    "negative": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": [
+          "clip",
+          0
+        ],
+        "text": ""
+      }
+    },
+    "timing": {
+      "class_type": "ConditioningStableAudio",
+      "inputs": {
+        "positive": [
+          "positive",
+          0
+        ],
+        "negative": [
+          "negative",
+          0
+        ],
+        "seconds_start": 0.0,
+        "seconds_total": 5.0
+      }
+    },
+    "latent": {
+      "class_type": "EmptyLatentAudio",
+      "inputs": {
+        "seconds": 5.0,
+        "batch_size": 1
+      }
+    },
+    "sample": {
+      "class_type": "KSampler",
+      "inputs": {
+        "seed": 1,
+        "steps": 50,
+        "cfg": 7.0,
+        "sampler_name": "dpmpp_3m_sde",
+        "scheduler": "exponential",
+        "denoise": 1,
+        "model": [
+          "model",
+          0
+        ],
+        "positive": [
+          "timing",
+          0
+        ],
+        "negative": [
+          "timing",
+          1
+        ],
+        "latent_image": [
+          "latent",
+          0
+        ]
+      }
+    },
+    "decode": {
+      "class_type": "VAEDecodeAudio",
+      "inputs": {
+        "samples": [
+          "sample",
+          0
+        ],
+        "vae": [
+          "model",
+          2
+        ]
+      }
+    },
+    "save": {
+      "class_type": "SaveAudio",
+      "inputs": {
+        "audio": [
+          "decode",
+          0
+        ],
+        "filename_prefix": "harness/sfx"
+      }
+    }
+  }
+}

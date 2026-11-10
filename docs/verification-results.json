@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-10",
+  "source_baseline_tests": 94,
+  "default_suite": {
+    "reported_tests": 113,
+    "reported_skips": 6,
+    "result": "OK"
+  },
+  "reference_native_suite": {
+    "tests": 120,
+    "skips": 0,
+    "result": "OK",
+    "scope": "Existing installed reference runtime, CPU checks and simulated transports; no inference"
+  },
+  "bootstrap_suite": {
+    "tests": 21,
+    "result": "OK",
+    "real_installation": false
+  },
+  "catalog": {
+    "files": 73,
+    "speech_wheels": 6,
+    "download_bytes": 87813190651,
+    "active_safetensors_verified_against_reference_bytes": 12,
+    "windows_wheel_metadata_verified": 94
+  },
+  "existing_service_readiness": true,
+  "fresh_windows_installation_exercised": false,
+  "publication_changed_live_installation": false
+}

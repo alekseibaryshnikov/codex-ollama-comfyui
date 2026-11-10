@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "platform": "Windows x86-64",
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.13",
+    "architecture": "amd64",
+    "reference_build": {
+      "publisher": "Astral python-build-standalone",
+      "release": "20260510",
+      "source": "https://github.com/astral-sh/python-build-standalone/releases/download/20260510/cpython-3.12.13%2B20260510-x86_64-pc-windows-msvc-install_only_stripped.tar.gz",
+      "filename": "cpython-3.12.13+20260510-x86_64-pc-windows-msvc-install_only_stripped.tar.gz",
+      "size_bytes": 21921642,
+      "sha256": "24168aff2e7d93784c6a436124c4ebb79b076a4e289bde4902c08333507b71d0"
+    }
+  },
+  "comfyui": {
+    "repository": "https://github.com/Comfy-Org/ComfyUI.git",
+    "commit": "4d988b647853f587173728cfda163d1f77501102",
+    "version": "0.43.0",
+    "upstream_requirements": "requirements.txt",
+    "windows_requirements": "locks/comfy-requirements.txt",
+    "catalog": "manifests/catalog.json",
+    "required_custom_nodes": [
+      {
+        "name": "comfyui-kokoro",
+        "repository": "https://github.com/stavsap/comfyui-kokoro.git",
+        "commit": "cfb59b5605b351e196182c836f0b48c1a784e52f",
+        "install": "approved catalog files under custom_nodes/comfyui-kokoro",
+        "presets": [
+          "speech"
+        ]
+      }
+    ],
+    "native_presets": [
+      "image",
+      "image_edit",
+      "video",
+      "video_edit",
+      "music",
+      "sfx"
+    ],
+    "ltx_guider": "LTXVDualCFGGuider is provided by comfy_extras/nodes_lt.py at the pinned core revision."
+  },
+  "cuda": {
+    "build": "cu130",
+    "reference_gpu": "NVIDIA GeForce RTX 5080",
+    "wheel_index": "https://download.pytorch.org/whl/cu130/",
+    "packages": [
+      {
+        "name": "torchvision",
+        "version": "0.29.1+cu130",
+        "filename": "torchvision-0.29.1+cu130-cp312-cp312-win_amd64.whl",
+        "source": "https://download-r2.pytorch.org/whl/cu130/torchvision-0.29.1%2Bcu130-cp312-cp312-win_amd64.whl",
+        "sha256": "14d3195e5e657fef46d08de0d3470da03a983fa383d8aa279e36e47e95d991c6"
+      },
+      {
+        "name": "torch",
+        "version": "2.14.1+cu130",
+        "filename": "torch-2.14.1+cu130-cp312-cp312-win_amd64.whl",
+        "source": "https://download-r2.pytorch.org/whl/cu130/torch-2.14.1%2Bcu130-cp312-cp312-win_amd64.whl",
+        "sha256": "0a09031e93632d14ef49553acd6211ece3ae9cdc0969a369b8c24e3cc4d15be9"
+      }
+    ],
+    "torchaudio": "The pinned core requirements and active graph nodes do not depend on torchaudio. The reference environment also contained torchaudio 2.11.0+cu130. The official index had no matching 2.14.1 Windows CPython 3.12 cu130 wheel at verification time."
+  },
+  "ollama": {
+    "version": "0.40.16",
+    "base_model": "qwen3.8:27b",
+    "base_digest": "sha256:aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+    "worker_model": "qwen3.8:27b-codex",
+    "worker_digest": "sha256:de75c88774de128d02747e8f39983b3bfb6c40635b863d968e2b126d86a12bd8",
+    "context_length": 262144,
+    "registry_manifest": "https://registry.ollama.ai/v2/library/qwen3.8/manifests/27b"
+  },
+  "verification": {
+    "date": "2026-11-10",
+    "core": "Clean tracked reference checkout; commit also resolves upstream.",
+    "runtime": "All 94 selected artifacts have Windows CPython 3.12 compatible wheels with published SHA-256. Each exact wheel's PEP 658 metadata was fetched from its publisher. Every applicable default Requires-Dist entry resolved within the lock under Windows markers. pip parsed 88 hashed base requirements; the other six wheels are in the approval catalog. No clean-machine installation was performed.",
+    "models": "All 12 distinct active safetensors have verified local SHA-256 and sizes matching pinned upstream records. Kokoro model sha256 was verified against the installed release file; upstream GitHub release metadata publishes its byte count but no digest.",
+    "model_access": "Stable Audio Open 1.0 and LTX-2.5 require acceptance of their respective Hugging Face model terms and an authenticated download."
+  }
+}
