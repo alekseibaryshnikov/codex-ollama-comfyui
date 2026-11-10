@@ -66,6 +66,43 @@ non-native unit suite without model downloads or stored credentials.
 
 ## Evidence limits
 
+### One-script Windows installer
+
+`WINSETUP-1/2/3/4` in `setup.ps1` map to
+`tests/test_windows_setup.py` and `tests/windows_setup_cases.ps1`. Tests run
+actual Windows PowerShell 5.1 with temporary files, replacing package managers,
+authentication and most service boundaries.
+
+- `python -m unittest discover -s tests -p test_windows_setup.py -v` ran against
+  declared unimplemented boundaries first. The initial run also exposed a
+  reserved PowerShell variable binding problem in five orchestration cases;
+  those setup failures are not claimed as meaningful TDD red. The repaired
+  lifecycle scenarios provide integration coverage, not a reconstructed TDD
+  history. Initial native-command and foreign-listener checks failed at the
+  missing boundaries.
+- Focused regressions observed real failing outcomes before their repairs:
+  omitted CUDA check, alias changes after an Ollama version failure, evidence
+  path rebasing, unapproved unattended success, interactive output polluting
+  command results, venv supervisor selection, absent venv-chain validation,
+  case-sensitive Windows path comparison, and writes through an ignored work
+  junction. Report-sentinel coverage was added for Terra's refused-root finding;
+  no isolated pre-repair red is claimed for that sentinel assertion.
+- The final focused suite ran **13 tests, OK**, including a real NTFS junction
+  preservation fixture. The full `python -m unittest discover -s tests -v`
+  ran **138 tests, OK, seven optional native/symlink checks skipped**.
+- The real `powershell.exe -NoProfile -ExecutionPolicy Bypass -File setup.ps1
+  -Plan` returned the expected component/path preview without invoking setup.
+- A separate real Python 3.12 venv fixture showed the Windows supervisor to
+  managed redirector to base-interpreter listener chain. The production guard
+  then passed against actual Windows TCP/CIM information and native argv
+  parsing with paths containing spaces. The tiny HTTP fixture bound an
+  ephemeral loopback port; its command-line port value exercised the guard.
+  This was not ComfyUI startup or GPU inference. All fixture processes exited.
+
+Detailed red/green logs, process traces and reports remain in ignored `work`.
+No prerequisite installation, real setup login, full model download or clean-OS
+installation was run for this entry script. Destination checks remain required.
+
 ### Installed skill recovery addition
 
 `SKILLS-1/2/3` in `restore_skills.py` map to

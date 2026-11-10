@@ -29,6 +29,26 @@ is added. Your Codex account must provide the configured models and subagents.
 
 ## Fresh Windows setup
 
+### One script
+
+Download [setup.ps1](https://raw.githubusercontent.com/alekseibaryshnikov/codex-ollama-comfyui/main/setup.ps1)
+and run it in a normal **64-bit Windows PowerShell** window:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:USERPROFILE\Downloads\setup.ps1"
+```
+
+It installs Git, Python 3.12 x64, Codex desktop and CLI, Ollama, the managed
+ComfyUI environment, model weights, your 131 skills, the native agents and your
+recorded plugins. It starts the local services and checks CUDA and service
+readiness. Account sign-in and model terms still need your participation.
+Allow about **200 GB free**, a compatible NVIDIA driver and Windows App Installer.
+
+Use `-Plan` for a read-only preview. Rerun the same command to resume; existing
+content is rechecked, not blindly skipped. [The full installer guide](docs/windows-setup.md)
+covers custom paths, unattended runs, reports and the final routing activation
+after destination smoke checks. The individual commands below remain available.
+
 Start with Windows x86-64, Git, 64-bit Python 3.12, the Codex app and CLI, Ollama,
 and a compatible NVIDIA driver. The reference GPU is an RTX 5080 with 16 GB VRAM;
 the reference machine has about 64 GB RAM. This is not a CPU-only installation.
