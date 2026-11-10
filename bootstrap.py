@@ -1,5 +1,9 @@
 """Windows recovery commands using standard Python only.
 
+BOOT-NATIVE: Fresh config names native coding; only same-root legacy ownership
+keys survive reconfiguration, including historical input/decoder identity when
+root is absent. Matching roots reject malformed ownership before any writes;
+conflicting identity never carries ownership. Evidence: tests/test_native_migration.py.
 BOOT-1: Generate machine-local config and provision manifests from relative,
 hash-pinned catalog entries. Reject absolute/traversal destinations and preserve
 existing config in a private backup before replacing it.
@@ -77,11 +81,25 @@ def configure(comfy_root, base=BASE):
         manifest['voice_assembly'] = expand_destination(catalog['voice_assembly'], roots)
     manifest_path = downloads.parent / 'download-manifest.json'
     provision.validate_manifest(manifest, manifest_path)
-    lock = harness.read_json(base/'locks/runtime.json')
-    config = {'model': lock['ollama']['worker_model'], 'comfy_url': 'http://127.0.0.1:8189',
-              'ollama_url': 'http://127.0.0.1:11434', 'comfy_root': str(app),
+    config = {'coding': {'coder':'terra_coder', 'model':'gpt-6.1-terra', 'provider':'openai', 'reviewer':'terra'},
+              'comfy_url': 'http://127.0.0.1:8189', 'comfy_root': str(app),
               'comfy_input_dir': str(app/'input'), 'decoder_python': str(root/'python/Scripts/python.exe')}
     config_path = base/'config.json'
+    if config_path.exists():
+        old = harness.read_json(config_path)
+        identities = {'comfy_root': app, 'comfy_input_dir': app/'input',
+                      'decoder_python': root/'python/Scripts/python.exe'}
+        def matches(key):
+            value = old.get(key)
+            return isinstance(value, str) and bool(value) and Path(value).expanduser().resolve() == identities[key]
+        if 'comfy_root' in old:
+            same_root = matches('comfy_root') and all(matches(k) for k in ('comfy_input_dir','decoder_python') if k in old)
+        else:
+            same_root = matches('comfy_input_dir') and matches('decoder_python')
+        if same_root:
+            harness.validate_legacy_handoff(old)
+            if 'model' in old:
+                config.update(model=old['model'], ollama_url=old['ollama_url'])
     if config_path.exists() and config_path.read_bytes() != json.dumps(config, indent=2).encode():
         backup = base/'.runtime'/('config-backup-'+uuid.uuid4().hex+'.json')
         backup.parent.mkdir(parents=True, exist_ok=True)

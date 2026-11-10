@@ -1,5 +1,5 @@
 name = "terra"
-description = "Independently review every Sol, Qwen or Astra implementation and repair against its contract, checks and current diff."
+description = "Independently review every Sol, terra_coder or Astra implementation and repair against its contract, checks and current diff."
 model = "gpt-6.1-terra"
 model_reasoning_effort = "high"
 developer_instructions = """

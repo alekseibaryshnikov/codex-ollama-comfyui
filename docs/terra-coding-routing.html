@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Native Terra coding route</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#173c35;background:#f2f6f1}body{max-width:1000px;margin:auto;padding:35px 20px 65px}h1{font-size:clamp(32px,5vw,52px);letter-spacing:-.04em}p,li{line-height:1.7}.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:30px 0}.card{padding:22px;background:white;border:1px solid #c8d8ce;border-radius:14px}.card strong{display:block;font-size:22px;margin:8px 0}.tag{color:#527065;font-size:14px}table{width:100%;border-collapse:collapse;background:white}th,td{text-align:left;padding:13px;border-bottom:1px solid #d0ded4}.scroll{overflow:auto}a{color:#076952}.verified{padding:16px 22px;border-left:5px solid #208165;background:#e2eee4}code{overflow-wrap:anywhere}h2{margin-top:35px}
+</style>
+<h1>Terra implements. Terra reviews separately.</h1>
+<p>Sol coordinates a bounded assignment, hands routine coding to a native Terra
+worker, then obtains a fresh independent Terra review of the exact patch. Astra
+handles difficult decisions and unresolved failures. ComfyUI keeps the media GPU.</p>
+<div class="flow">
+<div class="card"><span class="tag">1. Coordinate</span><strong>Sol</strong>Contract, owned files, acceptance checks and delegation.</div>
+<div class="card"><span class="tag">2. Implement</span><strong>terra_coder</strong>GPT-6.1 Terra, medium reasoning. Bounded coding and checks.</div>
+<div class="card"><span class="tag">3. Review</span><strong>terra</strong>GPT-6.1 Terra, high reasoning. A fresh session reviews the patch.</div>
+<div class="card"><span class="tag">4. Accept or repair</span><strong>Sol</strong>Resolve findings, require fresh review, escalate difficult work to Astra.</div>
+</div>
+<h2>What changed</h2>
+<div class="scroll"><table><thead><tr><th>Boundary</th><th>Current behavior</th></tr></thead><tbody>
+<tr><td>Routine coding</td><td>Native signed-in Codex agent; no Ollama inference or GPU lease.</td></tr>
+<tr><td>Reviews</td><td>A separate fresh Terra session reviews every implementation and repair. Separate sessions still use the same model family.</td></tr>
+<tr><td>Windows setup</td><td>Stages coder, reviewer and Astra. Restores skills/plugins and installs ComfyUI/media dependencies. No default Ollama/Qwen installation, startup or download.</td></tr>
+<tr><td>Old coding commands</td><td>Refuse new work and historical worker replay with native-route guidance. Historical job inspection/review/cancellation remains.</td></tr>
+<tr><td>Existing installations</td><td>Refresh preserves root configuration and instructions outside the marked routing block, with backup and hash-guarded rollback.</td></tr>
+<tr><td>Media</td><td>The seven registered presets and model files remain. Qwen Image Edit is the existing image model, separate from the retired coding worker.</td></tr>
+</tbody></table></div>
+<h2>Observed verification</h2>
+<div class="verified"><p>142 regression tests completed, OK, with seven optional
+checks skipped. A separate Terra reviewer approved the implementation and its
+repairs. The active update preserved media configuration, workflows and all
+existing job/runtime data, including 25 terminal jobs.</p>
+<p>The active doctor reported all seven media presets ready. Codex parsed distinct
+coder/reviewer definitions in the real profile. These diagnostics made no model
+calls and report native model availability as unprobed.</p></div>
+<h2>What still needs a fresh session</h2>
+<p>Open a new signed-in Codex chat to load the updated native roles. A fresh Windows
+installation still needs its own native coder/reviewer and asset smoke checks
+before activation. No matched coding cost or speed benchmark was performed.</p>
+<p>Luna remains a possible option for small mechanical edits and triage; this
+configuration uses the requested Terra routine coding route.</p>
+<p><a href="../README.md">Setup and everyday usage</a> ·
+<a href="windows-setup.md">Windows installer</a> ·
+<a href="recovery.md">Refresh and recovery</a> ·
+<a href="../TDD_EVIDENCE.md">Contracts and test evidence</a></p>
+</html>

@@ -7,8 +7,9 @@ WINSETUP-2: Reruns revalidate live state. Preserve existing repositories, foreig
 listeners and edited activation evidence. Never invent successful smoke evidence.
 Reports for a refused checkout go to a new sibling directory, never inside it.
 Validate ignored work/report/log/evidence paths before writing through them.
-Comfy must pass an actual CUDA operation before model downloads. A failed Ollama
-version/ownership check blocks all subsequent model-alias changes.
+Comfy must pass an actual CUDA operation before model downloads.
+WINSETUP-NATIVE: Default setup stages native coder and reviewer without installing,
+starting or modifying Ollama or its models. Evidence: tests/test_windows_setup.py.
 WINSETUP-3: Use one selected Codex profile and ChatGPT login. Account access may
 need human action; unattended mode reports it instead of waiting for input.
 Long-running services don't inherit access tokens. Never restart unrelated work.
@@ -36,16 +37,16 @@ param(
 function Invoke-WindowsSetup {
     param([string]$Root, [string]$Comfy, [string]$ProfileHome, [switch]$Preview,
           [switch]$Consent, [switch]$Unattended, [string]$EvidenceFile)
-    $components = @('Git', 'Python 3.12 x64', 'Codex desktop', 'Codex CLI', 'Ollama',
-                    'ComfyUI', 'models', 'skills', 'plugins', 'Astra/Terra', 'verification')
+    $components = @('Git', 'Python 3.12 x64', 'Codex desktop', 'Codex CLI',
+                    'ComfyUI', 'models', 'skills', 'plugins', 'native coder/reviewer', 'Astra', 'verification')
     if ($Preview -or (-not $Consent -and $Unattended)) {
         return [pscustomobject]@{ state = $(if ($Preview) { 'preview' } else { 'approval_required' }); exit_code = $(if ($Preview) { 0 } else { 2 }); components = $components;
             install_root = $Root; comfy_root = $Comfy; codex_home = $ProfileHome;
-            notes = 'About 88 GB media weights plus 18 GB Qwen, Python/CUDA and temporary files. Allow 200 GB free. App Installer, NVIDIA driver, sign-in and model access are required.' }
+            notes = 'About 88 GB media weights plus Python/CUDA and temporary files. Allow 200 GB free. App Installer, NVIDIA driver, sign-in and model access are required.' }
     }
     if (-not $Consent) {
-        Write-Host 'Install Git, Python, Codex desktop/CLI, Ollama, ComfyUI, models, skills and plugins.'
-        Write-Host 'About 88 GB media weights plus 18 GB Qwen and dependencies. Allow 200 GB free.'
+        Write-Host 'Install Git, Python, Codex desktop/CLI, ComfyUI, models, skills and plugins.'
+        Write-Host 'About 88 GB media weights and dependencies. Allow 200 GB free.'
         Write-Host 'WinGet package/source terms will be accepted. Model terms and account sign-in remain yours.'
         if ((Read-Host 'Continue? [y/N]') -notmatch '^(y|yes)$') {
             return [pscustomobject]@{ state = 'cancelled'; exit_code = 2 }
@@ -88,10 +89,6 @@ function Invoke-WindowsSetup {
         Invoke-SetupStep 'Hugging Face sign-in' { Ensure-SetupHuggingFaceLogin $Comfy $Unattended } -Optional
         if ($script:SetupSteps[-1].state -eq 'passed') {
             Invoke-SetupStep 'models' { Invoke-SetupCommand $tools.Python @('-E','-s','-B','bootstrap.py','models','--approved') } -Optional
-        }
-        Invoke-SetupStep 'Ollama service' { Start-SetupOllama $tools.Ollama $Root } -Optional
-        if ($script:SetupSteps[-1].state -eq 'passed') {
-            Invoke-SetupStep 'Qwen' { Invoke-SetupCommand $tools.Python @('-E','-s','-B','bootstrap.py','ollama','--approved') } -Optional
         }
         Invoke-SetupStep 'ComfyUI service' { Start-SetupComfy $Root $tools.Python $Comfy } -Optional
         Invoke-SetupStep 'service verification' { Invoke-SetupCommand $tools.Python @('-E','-s','-B','bootstrap.py','verify') } -Optional
@@ -244,15 +241,13 @@ function Install-SetupTools {
     if (-not (Find-SetupPython)) { Install-SetupPackage 'Python.Python.3.12' }
     if (-not (Get-Command codex.exe -ErrorAction SilentlyContinue)) { Install-SetupPackage 'OpenAI.Codex' }
     if (-not (Get-AppxPackage -Name OpenAI.Codex -ErrorAction SilentlyContinue)) { Install-SetupPackage '9PLM9XGG6VKS' 'msstore' }
-    if (-not (Get-Command ollama.exe -ErrorAction SilentlyContinue)) { Install-SetupPackage 'Ollama.Ollama' 'winget' '0.40.16' }
     $python = Find-SetupPython
     $codex = Get-Command codex.exe -ErrorAction SilentlyContinue
-    $ollama = Get-Command ollama.exe -ErrorAction SilentlyContinue
-    if (-not $python -or -not $codex -or -not $ollama -or -not (Get-Command git.exe -ErrorAction SilentlyContinue)) {
+    if (-not $python -or -not $codex -or -not (Get-Command git.exe -ErrorAction SilentlyContinue)) {
         throw 'A prerequisite is not available after installation. Open a new 64-bit PowerShell terminal and rerun.'
     }
     if (-not (Get-AppxPackage -Name OpenAI.Codex -ErrorAction SilentlyContinue)) { throw 'Codex desktop installation is not registered for this Windows account.' }
-    return @{ Python = $python; Codex = $codex.Source; Ollama = $ollama.Source }
+    return @{ Python = $python; Codex = $codex.Source }
 }
 
 function Get-SetupRepository {
@@ -327,28 +322,10 @@ function Start-SetupProcess {
         [Environment]::SetEnvironmentVariable($key,$null,'Process')
     }
     try {
-        $env:OLLAMA_HOST = '127.0.0.1:11434'
         return Start-Process -FilePath $File -ArgumentList $Arguments -WorkingDirectory $Root -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $Root ('work\windows-setup\' + $Name + '.stdout.log')) -RedirectStandardError (Join-Path $Root ('work\windows-setup\' + $Name + '.stderr.log'))
     } finally {
         foreach ($key in $saved.Keys) { [Environment]::SetEnvironmentVariable($key,$saved[$key],'Process') }
     }
-}
-
-function Start-SetupOllama {
-    param([string]$Ollama, [string]$Root)
-    $expected = (Get-Content -LiteralPath (Join-Path $Root 'locks\runtime.json') -Raw | ConvertFrom-Json).ollama.version
-    $version = $null
-    try { $version = Get-SetupJson 'http://127.0.0.1:11434/api/version' } catch {}
-    if (-not $version) {
-        if (@(Get-SetupListeners 11434).Count -ne 0) { throw 'Port 11434 belongs to an unrelated or unready service; preserving it.' }
-        $null = Start-SetupProcess $Ollama @('serve') $Root 'ollama'
-        $deadline = [DateTime]::UtcNow.AddSeconds(120)
-        do {
-            try { $version = Get-SetupJson 'http://127.0.0.1:11434/api/version' } catch {}
-            if (-not $version) { Start-Sleep -Milliseconds 500 }
-        } until ($version -or [DateTime]::UtcNow -gt $deadline)
-    }
-    if (-not $version -or $version.version -ne $expected) { throw ('Expected Ollama ' + $expected + ' on loopback 11434. Preserve an existing different version; reconcile it explicitly before rerunning.') }
 }
 
 function Start-SetupComfy {

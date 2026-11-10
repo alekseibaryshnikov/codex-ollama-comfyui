@@ -17,6 +17,8 @@ if ($Scenario -in @('preview','approval')) {
     Assert ($result.state -eq 'preview') 'Expected preview'
     Assert (-not (Test-Path $root)) 'Preview wrote to disk'
     Assert ($result.components -contains 'plugins') 'Plan omitted plugin restore'
+    Assert ($result.components -contains 'native coder/reviewer') 'Plan omitted native roles'
+    Assert (($result.components -join ' ') -notmatch 'Ollama|Qwen' -and $result.notes -notmatch '18 GB|Qwen') 'Plan requires local coding model'
     exit 0
 }
 if ($Scenario -eq 'native') {
@@ -95,12 +97,12 @@ if ($Scenario -eq 'foreign') {
 
 # Remaining cases exercise actual orchestration, with all external boundaries replaced.
 $script:calls = @()
-function Install-SetupTools { $script:calls += 'tools'; return @{ Python = 'fixture-python'; Codex = 'fixture-codex'; Ollama = 'fixture-ollama' } }
+function Install-SetupTools { $script:calls += 'tools'; return @{ Python = 'fixture-python'; Codex = 'fixture-codex' } }
 function Get-SetupRepository { param($Root); if ($Scenario -eq 'refused-root') { throw 'Preserving unrelated repository' }; $null = New-Item -ItemType Directory -Path $Root -Force; return $Root }
 function Test-SetupHardware { $script:calls += 'hardware' }
 function Ensure-SetupCodexLogin { param($Codex, $Unattended); if ($Scenario -eq 'accounts') { throw 'ChatGPT sign-in needed' }; $script:calls += 'codex-login' }
 function Ensure-SetupHuggingFaceLogin { param($Comfy, $Unattended); if ($Scenario -eq 'accounts') { throw 'Hugging Face sign-in needed' }; $script:calls += 'hf-login' }
-function Start-SetupOllama { $script:calls += 'ollama-service'; if ($Scenario -eq 'ollama-failure') { throw 'Wrong Ollama version' } }
+function Start-SetupOllama { $script:calls += 'ollama-service' }
 function Start-SetupComfy { $script:calls += 'comfy-service' }
 function Invoke-SetupCommand {
     param($File, $Arguments, [switch]$AllowFailure, [switch]$Capture, [switch]$Interactive)
@@ -113,7 +115,7 @@ function Invoke-SetupCommand {
 }
 
 $null = New-Item -ItemType Directory -Path (Join-Path $root 'examples') -Force
-$template = '{"tests":false,"terra":false,"astra":false,"image":false,"image_edit":false,"video":false,"video_edit":false,"music":false,"sfx":false,"speech":false}'
+$template = '{"tests":false,"terra_coder":false,"terra":false,"astra":false,"image":false,"image_edit":false,"video":false,"video_edit":false,"music":false,"sfx":false,"speech":false}'
 $template | Set-Content -LiteralPath (Join-Path $root 'examples\activation-evidence.json')
 $evidenceFile = Join-Path $root 'work\activation-evidence.json'
 if ($Scenario -eq 'redirected-work') {
@@ -161,14 +163,11 @@ Assert ($env:CODEX_HOME -ne $homePath) 'Selected profile leaked to caller'
 if ($Scenario -eq 'accounts') {
     Assert ($result.exit_code -eq 2) 'Partial install reported complete'
     Assert (@($result.pending | Where-Object { $_ -match 'ChatGPT|Hugging Face|plugins' }).Count -ge 3) 'Account/plugin failures hidden'
-    Assert ($script:calls -contains 'ollama-service') 'Independent Ollama setup skipped'
+    Assert ($script:calls -notcontains 'ollama-service') 'Touched Ollama during account failure'
     exit 0
 }
-if ($Scenario -eq 'ollama-failure') {
-    Assert (@($script:calls | Where-Object { $_ -match 'bootstrap.py ollama' }).Count -eq 0) 'Modified alias on incompatible Ollama'
-    Assert ($result.exit_code -eq 2) 'Ollama failure hidden'
-    exit 0
-}
+Assert ($script:calls -notcontains 'ollama-service') 'Started existing Ollama'
+Assert (@($script:calls | Where-Object { $_ -match 'bootstrap.py ollama' }).Count -eq 0) 'Modified Ollama models'
 Assert ($result.state -eq 'needs_verification') 'Installation invented smoke success'
 Assert ((Get-Content -LiteralPath $evidenceFile -Raw | ConvertFrom-Json).tests -eq $false) 'Synthetic verification evidence'
 Assert (@($script:calls | Where-Object { $_ -match 'restore_skills.py.*--plugins' }).Count -eq 1) 'Plugins omitted'

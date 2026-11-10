@@ -66,6 +66,49 @@ non-native unit suite without model downloads or stored credentials.
 
 ## Evidence limits
 
+### Native Terra coding migration
+
+The bounded implementation and repairs were performed by a native
+`gpt-6.1-terra` implementer. A different native Terra agent independently reviewed
+the patch and requested two focused repairs before approving it. Sol coordinated
+the work and applied the approved deployment.
+
+| Criterion | Contract | Behavioral evidence |
+| --- | --- | --- |
+| Separate implementation/review roles | `install.py`, INSTALL-NATIVE | `tests/test_install.py`, `tests/test_portability.py`: real staged profiles parse distinct coder/reviewer roles; activation and rollback cover both. |
+| Fresh coder evidence | `install.py`, INSTALL-CODER-EVIDENCE | `tests/test_install.py`: missing coder evidence blocks fresh activation before writes. |
+| Preserve an activated profile | `install.py`, INSTALL-REFRESH | `tests/test_native_migration.py`: root config and surrounding instruction bytes survive refresh/rollback; conflicting skills and unactivated profiles are refused. |
+| Retire local coding execution | `harness.py`, NATIVE-CODE | `tests/test_native_migration.py`: old public code start and historical worker replay refuse before process/GPU work; historical status/review tests remain. |
+| Independent native diagnostics | `harness.py`, NATIVE-CODE | Fresh doctor/handoff configurations need no Ollama fields; diagnostics label native availability `not_probed`. |
+| Preserve owned legacy GPU handoff | `bootstrap.py`, BOOT-NATIVE | Actual historical configuration shape is represented with fake paths; consistent same-root identities retain the pair, other roots don't inherit it, malformed pairs stop before config or manifest writes. |
+| No default local worker installation | `setup.ps1`, WINSETUP-NATIVE | Actual PowerShell fixture runs omit Ollama/Qwen installation and startup while retaining skills/plugins, media setup and gated routing. |
+
+Focused tests failed for missing roles/policy and Windows local-worker routing
+before implementation, then passed. Further regressions reproduced the missing
+historical root identity and partial legacy ownership cases before each repair.
+Actual commands/logs are retained under ignored `work/terra-coder`.
+
+The final `python -m unittest discover -s tests -v` ran **142 tests, OK, seven
+optional native/symlink checks skipped**. The final Windows `-Plan` preview lists
+native coding/review and contains no Ollama/Qwen installation step.
+
+The scoped active update copied five allowlisted runtime/integration files, then
+used `install.py refresh` on the existing profile. Separate before-image backups
+and a hash-guarded rollback were saved privately. Its runtime README was also
+backed up and updated to point development/testing at the maintained checkout;
+the earlier deployment's tests/evidence remain historical. Readback confirmed unchanged
+root configuration, media configuration, media/provision sources, all workflow
+files and all existing runtime/job data, including 25 terminal jobs. One existing
+global harness skill remains discoverable; no duplicate was created.
+
+Live read-only doctor checks reported all seven media presets ready and native
+coding configuration separately. The old code command refused before reading
+missing request/config files. Actual Codex prompt rendering parsed the distinct
+coder/reviewer definitions in both a temporary profile and the real profile.
+These parser/doctor checks made no model calls. They do not prove execution of a
+new custom role in a fresh user chat, clean-Windows deployment, or a measured
+cost/latency improvement. Open a fresh Codex chat to load the updated roles.
+
 ### One-script Windows installer
 
 `WINSETUP-1/2/3/4` in `setup.ps1` map to

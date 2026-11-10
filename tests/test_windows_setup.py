@@ -28,7 +28,7 @@ class WindowsSetupTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stdout+'\n'+result.stderr)
 
     def test_preview_is_read_only(self):
-        """WINSETUP-1: Plan needs no installers, service calls or filesystem writes."""
+        """WINSETUP-1/NATIVE: Read-only plan names native roles and omits Ollama."""
         self.case('preview')
 
     def test_unattended_without_approval_reports_action_required(self):
@@ -36,7 +36,7 @@ class WindowsSetupTests(unittest.TestCase):
         self.case('approval')
 
     def test_all_components_run_in_order_without_faking_verification(self):
-        """WINSETUP-1/2/3: Full simulated install stages routing, reports pending smoke."""
+        """WINSETUP-1/2/3/NATIVE: Simulated install leaves Ollama untouched."""
         self.case('lifecycle')
 
     def test_existing_evidence_is_preserved_and_activation_is_explicit(self):
@@ -58,10 +58,6 @@ class WindowsSetupTests(unittest.TestCase):
     def test_redirected_paths_and_foreign_comfy_listener_are_preserved(self):
         """WINSETUP-2: Owned service checks refuse another installation."""
         self.case('foreign')
-
-    def test_failed_ollama_version_check_blocks_model_alias_changes(self):
-        """WINSETUP-2: A foreign/incompatible Ollama cannot receive worker changes."""
-        self.case('ollama-failure')
 
     def test_refused_checkout_does_not_overwrite_its_report_files(self):
         """WINSETUP-2: A rejected target keeps all bytes, including report sentinels."""

@@ -137,7 +137,7 @@ class RoutingV2Tests(unittest.TestCase):
         with patch('harness.http_json',side_effect=service),patch('media.prepare',side_effect=prepare):
             result=harness.doctor({'model':'qwen3.8:27b-codex','ollama_url':'http://localhost:11434','comfy_url':'http://localhost:8189'})
         self.assertTrue(result['ready'])
-        self.assertFalse(result['local_worker_ready'])
+        self.assertEqual(result['coding']['availability'],'not_probed')
         self.assertIn('video_edit',result['presets'])
         self.assertIn('image_edit',result['presets'])
         self.assertIn('reference_video',result['presets']['video_edit']['required_inputs'])

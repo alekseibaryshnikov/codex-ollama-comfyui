@@ -22,6 +22,10 @@ owned prompt. Never clear the whole queue or interrupt unrelated jobs.
 
 ## Uncertain Ollama alias promotion
 
+This section concerns retained legacy maintenance only. New routine coding uses
+native Terra, and the default Windows installer doesn't manage Ollama. Existing
+uncertainty guards are preserved so an older unsettled operation isn't bypassed.
+
 `.runtime/unconfirmed-ollama-alias.json` protects the shared lease before the
 live worker alias is replaced. It records the worker, prior digest, candidate
 digest and verified backup where present. A timeout can precede a delayed copy;
@@ -75,3 +79,16 @@ System skills and account-backed app connections come from the destination
 Codex installation. Open a new chat and check discovery. Don't copy plugin
 caches or authentication files from an old Windows account. Skill-specific
 runtime dependencies remain separate setup tasks.
+
+## Updating an already activated coding route
+
+`python install.py refresh` requires an existing marked harness block and a
+Sol/OpenAI root configuration. It updates the native coder/reviewer roles, skill
+and only that marked block, preserving root config bytes and unrelated
+instructions. It prints a backup for `python install.py rollback <backup>`.
+Fresh installs still need stage, destination smoke evidence and activate.
+
+If the existing profile uses the legacy `.codex/skills/local-harness` location,
+the update retains it. If both legacy and canonical copies exist, reconcile
+them explicitly before applying the update; an obsolete coding policy must not
+remain discoverable. Restart Codex or open a fresh chat to reload the role files.

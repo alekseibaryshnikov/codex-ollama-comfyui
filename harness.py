@@ -1,3 +1,8 @@
+# NATIVE-CODE: Public and replayed code jobs refuse before side effects; use a
+# native terra_coder session and separate terra review. Doctor reports unprobed
+# native coding metadata and never contacts Ollama. Asset handoff contacts legacy
+# Ollama only when both valid ownership keys exist; reject partial or malformed
+# pairs before any queue call. Evidence: tests/test_native_migration.py.
 """Local Codex worker runner. Contracts are exercised by tests/test_core.py.
 
 JOB-1: Persist jobs atomically, reject unknown IDs and requests outside supported
@@ -291,8 +296,11 @@ def run_command(argv, cwd, log, deadline, cancelled, env=None, stdin_path=None):
                 process.wait(timeout=10)
 
 
+NATIVE_CODE_MESSAGE = "Use native terra_coder for coding and a separate fresh terra session for review"
+
+
 def code_command(config, workspace):
-    """CODE-1: Build isolated local-only Codex argv and environment.
+    """Retired internal helper. CODE-1: Build isolated local-only Codex argv and environment.
 
     CODE-CONTEXT: Advertise 262144 tokens to the local coding client, matching
     the Qwen worker alias allocation. tests/test_core.py checks the client;
@@ -324,12 +332,14 @@ def code_command(config, workspace):
 
 
 def execute_job(store, job_id, config):
-    """JOB-2: Persist success/failure/cancel/timeout, release GPU in all cases.
+    """JOB-2: Execute assets and persist outcomes, releasing the GPU lease.
 
-    Code exits awaiting_review only after checks pass. Asset success requires
-    fetched, decoded outputs. Evidence: tests/test_jobs.py; media.py contracts.
+    Historical code execution is refused; asset success requires fetched, decoded
+    outputs. Evidence: tests/test_native_migration.py and media.py contracts.
     """
     state = store.read(job_id)
+    if state['kind'] == 'code':
+        raise ValueError(NATIVE_CODE_MESSAGE)
     folder = store.folder(job_id)
     request = validate_request(state['kind'], read_json(folder/'request.json'), state['workspace'])
     deadline = time.monotonic() + max(0, state['created_at'] + request['timeout_seconds'] - time.time())
@@ -367,6 +377,8 @@ def execute_job(store, job_id, config):
                     deadline=deadline, cancelled=cancelled, expected_aspect=(prepared['width'], prepared['height']))
                 write_json(folder/'source.json', source)
             write_json(folder/'workflow.json', prepared)
+        if state['kind'] == 'asset':
+            validate_legacy_handoff(config)
         while not lease.acquire():
             checkpoint()
             time.sleep(0.25)
@@ -491,11 +503,30 @@ def http_json(url, data=None):
         return json.loads(body) if body.strip() else {}
 
 
+def validate_legacy_handoff(config):
+    """NATIVE-CODE: Reject incomplete legacy ownership before any GPU handoff."""
+    keys = {'model', 'ollama_url'} & config.keys()
+    if not keys:
+        return
+    model, url = config.get('model'), config.get('ollama_url')
+    if not isinstance(model, str) or not model.strip() or not isinstance(url, str):
+        raise ValueError('Invalid legacy Ollama ownership pair')
+    from urllib.parse import urlsplit
+    try:
+        parsed = urlsplit(url)
+        if parsed.scheme not in ('http', 'https') or not parsed.hostname or parsed.port is None or parsed.username or parsed.password or parsed.path not in ('', '/') or parsed.query or parsed.fragment:
+            raise ValueError
+    except ValueError:
+        raise ValueError('Invalid legacy Ollama ownership pair') from None
+
+
 def prepare_gpu(kind, config, deadline, cancelled):
     """GPU-1: Wait for Comfy's queue, unload the other engine, respect stop.
 
     External Comfy jobs are never interrupted to make room for a harness job.
     """
+    if kind == 'asset':
+        validate_legacy_handoff(config)
     def check():
         if cancelled():
             raise InterruptedError('cancel requested')
@@ -516,6 +547,8 @@ def prepare_gpu(kind, config, deadline, cancelled):
                 return
             time.sleep(0.5)
     else:
+        if not config.get('ollama_url') or not config.get('model'):
+            return
         unload_requested = False
         while True:
             check()
@@ -542,11 +575,13 @@ def prepare_gpu(kind, config, deadline, cancelled):
 
 
 def start_job(store, kind, request, workspace, config_path):
-    """CLI-1: Validate first; spawn a hidden supervisor and return a durable ID.
+    """CLI-1: Validate asset requests, then spawn a hidden supervisor.
 
-    Code work requires a Git task branch with an existing base commit. No
-    checkout, pull, commit, or reset occurs here. Evidence: tests/test_cli.py.
+    Code starts are refused before validation or side effects. Evidence:
+    tests/test_cli.py and tests/test_native_migration.py.
     """
+    if kind == 'code':
+        raise ValueError(NATIVE_CODE_MESSAGE)
     request = validate_request(kind, request, workspace)
     workspace = Path(workspace).resolve()
     if kind == 'code':
@@ -575,18 +610,13 @@ def start_job(store, kind, request, workspace, config_path):
 
 def doctor(config):
     """CLI-1: Service failures are explicit data, never an implied ready state."""
-    result = {'model':config['model']}
-    for name, url in [('ollama',config['ollama_url']+'/api/tags'),('comfyui',config['comfy_url']+'/system_stats')]:
-        try:
-            data = http_json(url)
-            if name == 'ollama':
-                models = data.get('models',[])
-                result[name] = {'available':True,'model_installed':any(m['name']==config['model'] for m in models),'models':models}
-            else:
-                result[name] = {'available':True,'version':data['system']['comfyui_version'],'devices':data['devices']}
-        except Exception as error:
-            result[name] = {'available':False,'error':str(error)}
-    result['local_worker_ready'] = result['ollama'].get('model_installed', False)
+    result = {'coding': {'coder':'terra_coder', 'model':'gpt-6.1-terra',
+                         'provider':'openai', 'reviewer':'terra', 'availability':'not_probed'}}
+    try:
+        data = http_json(config['comfy_url']+'/system_stats')
+        result['comfyui'] = {'available':True,'version':data['system']['comfyui_version'],'devices':data['devices']}
+    except Exception as error:
+        result['comfyui'] = {'available':False,'error':str(error)}
     result['ready'] = result['comfyui']['available']
     try:
         import media
@@ -706,6 +736,8 @@ def main():
     review.add_argument('--result',type=Path,required=True)
     args = parser.parse_args()
     try:
+        if args.command == 'code':
+            raise ValueError(NATIVE_CODE_MESSAGE)
         config = read_json(args.config)
         store = JobStore(args.state_dir)
         if args.command == 'doctor':

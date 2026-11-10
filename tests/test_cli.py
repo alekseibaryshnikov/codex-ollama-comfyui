@@ -29,7 +29,7 @@ class CliTests(unittest.TestCase):
         with patch('harness.http_json',side_effect=OSError('offline')):
             result=harness.doctor({'model':'qwen3.8:27b','comfy_url':'http://127.0.0.1:8189','ollama_url':'http://127.0.0.1:11434'})
         self.assertFalse(result['ready'])
-        self.assertIn('offline',result['ollama']['error'])
+        self.assertEqual(result['coding']['availability'],'not_probed')
         self.assertIn('offline',result['comfyui']['error'])
 
     def test_empty_comfy_control_response_is_success(self):

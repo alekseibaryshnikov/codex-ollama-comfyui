@@ -1,9 +1,10 @@
-# Codex, Ollama and ComfyUI on Windows
+# Codex and ComfyUI on Windows
 
-A recoverable local harness with Codex as the interface. Sol coordinates normal
-work, Terra reviews every code patch, and Astra handles difficult work. Local
-Qwen is optional and used only for suitable bounded coding tasks. ComfyUI makes
-the media.
+A recoverable harness with Codex as the interface. Sol coordinates, native
+`terra_coder` implements routine bounded code changes, and a separate fresh
+`terra` session reviews every patch and repair. Astra handles difficult work.
+ComfyUI makes the media. Coding uses signed-in Codex access and no local GPU.
+See the [HTML routing and verification report](docs/terra-coding-routing.html).
 
 This repository contains source, workflows, custom skills, pinned references to
 installed upstream skills, model download references and Windows dependency locks.
@@ -14,10 +15,10 @@ machine configuration, generated media or old job histories.
 
 | Task | Route |
 |---|---|
-| Coordination and normal coding | `gpt-6.1-sol`, high reasoning |
+| Coordination and complex work | `gpt-6.1-sol`, high reasoning |
+| Routine coding | Native `terra_coder`, `gpt-6.1-terra`, medium |
 | Difficult work | Native `astra`, `gpt-6-astra`, high |
 | Independent code review | Native `terra`, `gpt-6.1-terra`, high |
-| Optional local coding | Ollama `qwen3.8:27b-codex`, 262,144 context tokens |
 | Images | Juggernaut XL |
 | Image editing | Qwen Image Edit 2511 INT8 with four-step Lightning |
 | Video generation | LTX-2.5 distilled NVFP4, text or first-frame image |
@@ -38,7 +39,7 @@ and run it in a normal **64-bit Windows PowerShell** window:
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:USERPROFILE\Downloads\setup.ps1"
 ```
 
-It installs Git, Python 3.12 x64, Codex desktop and CLI, Ollama, the managed
+It installs Git, Python 3.12 x64, Codex desktop and CLI, the managed
 ComfyUI environment, model weights, your 131 skills, the native agents and your
 recorded plugins. It starts the local services and checks CUDA and service
 readiness. Account sign-in and model terms still need your participation.
@@ -49,12 +50,12 @@ content is rechecked, not blindly skipped. [The full installer guide](docs/windo
 covers custom paths, unattended runs, reports and the final routing activation
 after destination smoke checks. The individual commands below remain available.
 
-Start with Windows x86-64, Git, 64-bit Python 3.12, the Codex app and CLI, Ollama,
+Start with Windows x86-64, Git, 64-bit Python 3.12, the Codex app and CLI,
 and a compatible NVIDIA driver. The reference GPU is an RTX 5080 with 16 GB VRAM;
 the reference machine has about 64 GB RAM. This is not a CPU-only installation.
 
-The active download catalog is about **87.81 GB**, with Qwen's roughly 17.74 GB
-Ollama download and the Python/CUDA environment separate. See
+The active download catalog is about **87.81 GB**, with the Python/CUDA environment
+separate. Ollama and the Qwen coding weights aren't installed by default. See
 [the catalog](manifests/catalog.json) for every size, SHA-256, source and license.
 The exact known Python build is recorded in [the runtime lock](locks/runtime.json).
 
@@ -167,23 +168,22 @@ py -3.12 bootstrap.py run-comfy
 The launcher uses loopback port `8189`, offline mode and a 3.5 GB VRAM reserve.
 It does not create a startup service or expose ComfyUI to the LAN.
 
-### Optional Qwen and Codex integration
+### Native Codex integration
 
-Start the Ollama app, then configure the local coding worker:
+Verify the media environment, then stage the native roles:
 
 ```powershell
-py -3.12 bootstrap.py ollama --approved
 py -3.12 bootstrap.py verify
 
 # Prepare native roles and the skill without changing root model or routing.
 py -3.12 install.py stage
 ```
 
-The Ollama command checks the pinned base digest, prepares the worker with
-`num_ctx=262144`, and preserves an existing alias before replacement. It does
-not run inference. `verify` checks decoder imports and service/model/workflow
-readiness; it reports the optional worker separately. It does not prove output
-quality or that a full 262K prompt will finish quickly.
+`verify` checks decoder imports and media service/model/workflow readiness. Its
+native coding section describes the configured agents; it does not make a model
+call or prove account access. In a fresh signed-in chat, verify both `terra_coder`
+implementation and a separate `terra` review. The coding worker never calls
+Ollama, acquires the media GPU lease or delegates recursively.
 
 Sign into Codex, choose Sol, and open a fresh chat so the native roles can be
 discovered. The skill is rendered for this checkout and installed under the
@@ -209,22 +209,27 @@ Staging alone does not enable coordinator routing.
 The profile locations follow the official [skills](https://learn.chatgpt.com/docs/build-skills)
 and [subagent](https://learn.chatgpt.com/docs/agent-configuration/subagents) documentation.
 
+For an already activated installation, `py -3.12 install.py refresh` updates the
+owned routing block, roles and skill with a rollback backup. It preserves root
+configuration and instructions outside the block. It isn't initial activation
+and doesn't certify account/model availability. Existing legacy skill locations
+are retained; duplicate harness skills must be reconciled before updating.
+
 ## Everyday commands
 
 ```powershell
 py -3.12 harness.py doctor
 py -3.12 harness.py asset start --request examples\image.json --workspace .
-py -3.12 harness.py code start --request my-task.json --workspace C:\Projects\my-task
 py -3.12 harness.py status <job-id>
 py -3.12 harness.py cancel <job-id>
-py -3.12 harness.py review <job-id> --result my-terra-review.json
 ```
 
-Code requests need an existing Git base commit and a task branch. Passing Qwen
-and check commands yields `awaiting_review`. Sol records Terra's real review of
-the unchanged patch before acceptance. At most two focused repairs are allowed;
-difficult remaining work goes to Astra. Model/tool failures return to Sol rather
-than an endless shell-repair loop.
+Ask Sol to delegate routine coding to `terra_coder` with owned files, a behavioral
+contract, observed failing tests and check commands. Use a separate fresh `terra`
+reviewer for the exact current patch. At most two focused repairs are allowed;
+difficult remaining work goes to Sol or Astra. The old local `code start` route
+is retired and refuses new or replayed Qwen work. Historical job status, review
+and cancellation remain inspectable. No automatic Ollama fallback is configured.
 
 Jobs return IDs immediately and save requests, logs, graphs and outputs under
 `.runtime`. Projects call one installed runner and share its GPU lease. The
@@ -233,10 +238,10 @@ handoff, and cancels only owned work. Normal limits are ten minutes for coding,
 images and audio, and thirty minutes for video. Larger jobs need an explicit
 limit increase. Technical success requires retrieved, fully decoded files.
 
-Worker sessions disable connectors, nested agents and skill injection, and
-filter inherited credentials from their environment. Normal filesystem
-permissions and Codex sandbox rules still apply; this is not a filesystem
-secrecy boundary.
+Native coding and review sessions follow their separate bounded role
+instructions and inherit the signed-in Codex provider. Normal filesystem
+permissions and Codex sandbox rules still apply. Reviewer instructions are not
+a filesystem sandbox or proof of model diversity.
 
 ## Video and context limits
 
@@ -251,11 +256,13 @@ precise instruction editor or masked Retake workflow. Tested retention values
 replaces the soundtrack. The earlier robot-ear artifact has not been certified
 fixed. Do not treat readable files as artistic acceptance.
 
-Qwen's loaded 262,144-token allocation was confirmed on the reference machine.
+For the former local coding worker, a 262,144-token allocation was confirmed.
 A 98,637-token retrieval test passed in about 235 seconds; the calibrated
 near-full request hit its 600-second limit. Full-window quality remains unverified.
 Ollama reported a 76% CPU / 24% GPU split. These are reference observations, not
-promises for another machine.
+promises for another machine. These historical results aren't Terra benchmarks.
+Installed Ollama software and weights are preserved. `bootstrap.py ollama
+--approved` remains an explicit legacy maintenance command, not a coding route.
 
 ## Recovery
 

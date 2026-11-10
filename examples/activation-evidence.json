@@ -8,5 +8,6 @@
   "video_edit": false,
   "music": false,
   "sfx": false,
-  "speech": false
+  "speech": false,
+  "terra_coder": false
 }

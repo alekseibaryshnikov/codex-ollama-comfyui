@@ -22,13 +22,18 @@ class PortabilityTests(unittest.TestCase):
         self.skill=self.home.parent/'.agents/skills/local-harness/SKILL.md'
 
     def test_staging_changes_only_roles_and_skill_and_rolls_back(self):
-        """Fresh setup can review with native roles before enabling routing."""
+        """INSTALL-NATIVE: Staging and rollback cover all roles without routing.
+
+        Real temporary files exercise profile isolation, not agent discovery.
+        """
         config=b'model="keep-root"\n';policy=b'Keep my own instructions.\n'
         (self.home/'config.toml').write_bytes(config);(self.home/'AGENTS.md').write_bytes(policy)
         with patch('install.BASE',self.source):backup=install.stage(self.home)
         self.assertEqual((self.home/'config.toml').read_bytes(),config)
         self.assertEqual((self.home/'AGENTS.md').read_bytes(),policy)
         self.assertTrue((self.home/'agents/astra.toml').is_file())
+        self.assertTrue((self.home/'agents/terra_coder.toml').is_file())
+        self.assertTrue((self.home/'agents/terra.toml').is_file())
         self.assertTrue(self.skill.is_file())
         self.assertIn((self.source/'harness.py').as_posix(),self.skill.read_text(encoding='utf-8'))
         install.rollback(backup)

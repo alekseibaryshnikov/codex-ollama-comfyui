@@ -79,7 +79,7 @@ class SubmissionOwnershipTests(unittest.TestCase):
         self.assertEqual(harness.read_json(self.marker)['prompt_id'], owned)
         # The new job sees an empty queue; the prior POST can still enqueue later.
         other = harness.JobStore(self.root/'jobs-b')
-        job = other.create('code', {'task': 'x', 'checks': [['unused']]}, self.root)
+        job = other.create('asset', {'preset': 'image', 'prompt': 'x'}, self.root)
         self.handoff.reset_mock()
         with patch('harness.run_command') as worker:
             harness.execute_job(other, job['id'], self.config)

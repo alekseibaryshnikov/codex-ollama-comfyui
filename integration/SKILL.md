@@ -1,29 +1,23 @@
 ---
 name: local-harness
-description: Coordinate local coding and ComfyUI assets with Sol, Terra review, Astra escalation and an optional Ollama worker for suitable coding tasks.
+description: Coordinate local coding and ComfyUI assets with Sol, Terra review, Astra escalation and a native Terra coding worker.
 ---
 
 # Local harness
 
-Sol (`gpt-6.1-sol`, high reasoning) coordinates and handles normal implementation.
-Native `terra` (`gpt-6.1-terra`, high) independently reviews every implementation
-and repair. Native `astra` (`gpt-6-astra`, high) handles difficult architecture,
-ambiguous failures and escalations. Use signed-in Codex access.
-
-The Ollama worker `qwen3.8:27b-codex` is **optional and coding-only**. It is a
-configured alias of the installed Qwen3.8:27b weights with 262,144 context tokens.
-Configured capacity is separate from verified long-input performance. Select it for a bounded,
-well-specified code change with useful tests when its local tool path is suitable.
-It is not a required hop before Sol can implement. Never use it for coordination,
-planning, research, code review, asset prompts or asset generation. Qwen Image
-Edit is a separate ComfyUI image model, not this Ollama worker.
+Sol (`gpt-6.1-sol`, high reasoning) coordinates and delegates routine bounded
+coding to `terra_coder` (`gpt-6.1-terra`, medium). A separate fresh `terra`
+(`gpt-6.1-terra`, high) independently reviews every implementation and repair.
+Native `astra` (`gpt-6-astra`, high) handles difficult architecture, ambiguous
+failures and escalations. Use signed-in Codex access. There is no automatic Qwen
+or Ollama coding route or fallback. Qwen Image Edit remains a ComfyUI image model.
 
 Worker and specialist sessions perform their bounded assignment without invoking
 this coordinator workflow or delegating recursively.
 
 Runner: `__HARNESS_ROOT__/harness.py`.
 Use absolute request/workspace paths. Commands return JSON; retain each job ID.
-`doctor` reports asset readiness separately from optional local-worker readiness.
+`doctor` reports asset readiness separately from native coding readiness.
 
 ## Coding
 
@@ -31,34 +25,20 @@ Follow existing branch and SDD/TDD instructions before changing behavior. Pull
 current main with fast-forward only when an upstream exists and existing work
 can be preserved; create the task branch before editing. Never discard work.
 
-Sol can implement directly or delegate difficult work to Astra. For every patch,
-run acceptance checks and ask Terra to review the exact current code and evidence.
-Repairs need fresh checks and review. Preserve native review evidence; passing
-tests alone do not establish acceptance.
-
-When Qwen is suitable:
-
-1. Write JSON with `task`, a nonempty `checks` list of argv lists, and an
-   appropriate `timeout_seconds` (at most 600 by default). Supply the contract,
-   observed red evidence, permitted files and implementation constraints.
-2. Run `python <runner> code start --request <json> --workspace <repository>`.
-   The coordinator establishes the Git base/task branch first.
-3. Inspect `status <id>` and actual errors. A tooling failure or timeout returns
-   the assignment to Sol; do not keep cycling through shells. At most two focused
-   repairs are allowed when a real patch and actionable check/review findings
-   justify them. Escalate difficult remaining work to Astra.
-4. After `awaiting_review`, obtain Terra's actual verdict. Save JSON with
-   `model: "gpt-6.1-terra"`, `verdict: "approved"` or `"changes_requested"`, and
-   a nonempty `summary`. Run `review <id> --result <json>`. Approval must cover
-   unchanged current bytes. Never describe a failed Qwen job as successful
-   because another agent later repaired the code.
+Give terra_coder a bounded assignment with the contract, observed red evidence,
+owned files and checks. Coding uses native Codex sessions and no GPU lease. Run
+acceptance checks and obtain review from a separate fresh terra session against
+the exact current code and evidence. Repairs require fresh checks and a fresh
+review. Allow at most two focused repairs for actionable findings, then return
+the work to Sol or escalate difficult unresolved failures to Astra. Preserve
+review evidence; passing tests alone do not establish acceptance.
 
 No unattended commits, pushes or deployments are authorized by this skill.
 Specialists retain parent permissions; reviewer instructions are not a sandbox.
 
 ## Assets
 
-Use the registered presets below. The Ollama coding worker does not participate.
+Use the registered presets below. Native coding does not use the GPU lease.
 
 | Preset | Model and role |
 |---|---|
