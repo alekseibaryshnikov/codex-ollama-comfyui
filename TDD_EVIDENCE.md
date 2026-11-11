@@ -186,3 +186,36 @@ acceptance was performed for publication. The current ComfyUI source pin and
 model stack were verified from a working reference environment. Accounts and
 upstream availability remain external prerequisites. A new machine must perform
 the verification checklist before full routing activation.
+
+### Task-aware model routing
+
+Sol chooses a task-appropriate role automatically when delegation helps. The
+policy no longer requires a worker and fresh reviewer for every change. Reviews
+are conditional on the request, material risk or substantial changes, and
+compact handoffs without inherited chat history are the default.
+
+- `INSTALL-LUNA` in `install.py` maps to
+  `tests.test_install.InstallTests.test_luna_publication_and_rollback_for_stage_activation_and_refresh`.
+  Real temporary profiles verify the Luna model and effort, publication,
+  rollback and preservation of root configuration during stage and refresh.
+  The test first failed with `KeyError: 'model'` because the old installer left
+  the prior role untouched, then passed after publication was added. Command:
+  `python -m unittest tests.test_install.InstallTests.test_luna_publication_and_rollback_for_stage_activation_and_refresh -v`.
+- `NATIVE-CODE` in `harness.py` maps to
+  `tests.test_native_migration.NativeMigration.test_retired_cli_guidance_makes_review_conditional`.
+  The actual CLI still refuses the retired coding route before reading missing
+  configuration. Its regression first failed against guidance that omitted Sol
+  and required fresh review, then passed after the guidance changed. Command:
+  `python -m unittest tests.test_native_migration.NativeMigration.test_retired_cli_guidance_makes_review_conditional -v`.
+- `python -m unittest tests.test_native_migration tests.test_install tests.test_portability -v`
+  ran 22 tests, all passing after the repairs.
+- Final `python -m unittest discover -s tests -v` ran 144 tests: 136 passed and
+  eight optional native-service or unsupported filesystem checks were skipped.
+- Independent review approved the final policy and implementation. An isolated
+  staged skill passed the skill validator. The active-profile refresh preserved
+  root configuration, instructions outside the routing block and the recorded
+  media configuration files, with backups retained.
+
+Fixture checks and policy scenarios do not establish live automatic model
+selection, inference quality or quota savings. No new live model or media smoke
+was performed for this update. Detailed local logs remain in ignored `work`.

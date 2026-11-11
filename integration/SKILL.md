@@ -1,19 +1,26 @@
 ---
 name: local-harness
-description: Coordinate local coding and ComfyUI assets with Sol, Terra review, Astra escalation and a native Terra coding worker.
+description: Coordinate local coding and ComfyUI assets with task-aware native roles.
 ---
 
 # Local harness
 
-Sol (`gpt-6.1-sol`, high reasoning) coordinates and delegates routine bounded
-coding to `terra_coder` (`gpt-6.1-terra`, medium). A separate fresh `terra`
-(`gpt-6.1-terra`, high) independently reviews every implementation and repair.
-Native `astra` (`gpt-6-astra`, high) handles difficult architecture, ambiguous
-failures and escalations. Use signed-in Codex access. There is no automatic Qwen
-or Ollama coding route or fallback. Qwen Image Edit remains a ComfyUI image model.
+Sol (`gpt-6.1-sol`, high) stays the root and handles quick answers, planning,
+general or ambiguous work and tiny edits directly. Respect explicit user model
+choices. Choose and invoke roles automatically when useful; the user need not
+name a model or request delegation. Delegate meaningful bounded implementation to `terra_coder`
+(`gpt-6.1-terra`, medium) when useful. Optional `luna` (`gpt-6-luna`, high)
+can handle narrow mechanical extraction, scanning or formatting when delegation
+is worthwhile; if unavailable, Sol handles the work. Use `astra` (`gpt-6-astra`,
+high) for difficult architecture, complex reasoning or unresolved failures.
+Normally use one worker; use parallel workers only for genuinely independent,
+beneficial tasks. Never automatically run all models as a chain. There is no
+automatic Qwen or Ollama coding route or fallback. Qwen Image Edit remains a
+ComfyUI image model.
 
-Worker and specialist sessions perform their bounded assignment without invoking
-this coordinator workflow or delegating recursively.
+Use `fork_turns='none'` by default with a compact self-contained brief, owned
+files and checks. Full history needs a specific justification. Sol must not
+duplicate delegated work. Workers and specialists do not delegate recursively.
 
 Runner: `__HARNESS_ROOT__/harness.py`.
 Use absolute request/workspace paths. Commands return JSON; retain each job ID.
@@ -25,13 +32,13 @@ Follow existing branch and SDD/TDD instructions before changing behavior. Pull
 current main with fast-forward only when an upstream exists and existing work
 can be preserved; create the task branch before editing. Never discard work.
 
-Give terra_coder a bounded assignment with the contract, observed red evidence,
+Give a worker a bounded assignment with the contract, relevant red evidence,
 owned files and checks. Coding uses native Codex sessions and no GPU lease. Run
-acceptance checks and obtain review from a separate fresh terra session against
-the exact current code and evidence. Repairs require fresh checks and a fresh
-review. Allow at most two focused repairs for actionable findings, then return
-the work to Sol or escalate difficult unresolved failures to Astra. Preserve
-review evidence; passing tests alone do not establish acceptance.
+acceptance checks. Request independent `terra` (`gpt-6.1-terra`, high) review
+when the user asks, for materially high-risk changes involving authentication,
+permissions, money, migrations or concurrency, or for substantial cross-cutting
+changes. Batch repairs and reuse the reviewer for follow-up unless independence
+or fresh context is needed. Preserve review evidence and report limitations.
 
 No unattended commits, pushes or deployments are authorized by this skill.
 Specialists retain parent permissions; reviewer instructions are not a sandbox.

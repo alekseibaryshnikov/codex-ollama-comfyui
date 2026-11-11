@@ -19,6 +19,46 @@ class InstallTests(unittest.TestCase):
         (self.home/'AGENTS.md').write_text('Existing user instructions\n')
         self.evidence={key:True for key in ['tests','qwen','terra_coder','terra','astra','image','image_edit','video','video_edit','music','speech','sfx']}
 
+    def test_luna_publication_and_rollback_for_stage_activation_and_refresh(self):
+        """INSTALL-LUNA in install.py: each operation publishes and restores Luna.
+
+        Real temporary profile files and TOML are exercised; this does not prove
+        Codex discovers the role or the account can access the model. Stage and
+        refresh preserve root configuration and unrelated instruction bytes.
+        """
+        role=self.home/'agents/luna.toml'
+        role.parent.mkdir()
+        original_role=b'# prior user role\r\n'
+        role.write_bytes(original_role)
+        config=(self.home/'config.toml').read_bytes()
+        policy=(self.home/'AGENTS.md').read_bytes()
+        backup=install.stage(self.home)
+        luna=tomllib.loads(role.read_text(encoding='utf-8'))
+        self.assertEqual((luna['model'],luna['model_reasoning_effort']),('gpt-6-luna','high'))
+        self.assertEqual((self.home/'config.toml').read_bytes(),config)
+        self.assertEqual((self.home/'AGENTS.md').read_bytes(),policy)
+        install.rollback(backup)
+        self.assertEqual(role.read_bytes(),original_role)
+        role.unlink()
+        backup=install.activate(self.home,{k: True for k in install.REQUIRED})
+        luna=tomllib.loads(role.read_text(encoding='utf-8'))
+        self.assertEqual((luna['model'],luna['model_reasoning_effort']),('gpt-6-luna','high'))
+        active_config=(self.home/'config.toml').read_bytes()
+        active_policy=(self.home/'AGENTS.md').read_bytes()
+        role.write_bytes(original_role)
+        refresh_backup=install.refresh(self.home)
+        luna=tomllib.loads(role.read_text(encoding='utf-8'))
+        self.assertEqual((luna['model'],luna['model_reasoning_effort']),('gpt-6-luna','high'))
+        self.assertEqual((self.home/'config.toml').read_bytes(),active_config)
+        self.assertEqual((self.home/'AGENTS.md').read_bytes(),active_policy)
+        install.rollback(refresh_backup)
+        self.assertEqual(role.read_bytes(),original_role)
+        role.write_bytes((install.BASE/'integration/luna.toml').read_bytes())
+        install.rollback(backup)
+        self.assertFalse(role.exists())
+        self.assertEqual((self.home/'config.toml').read_bytes(),config)
+        self.assertEqual((self.home/'AGENTS.md').read_bytes(),policy)
+
     def test_fresh_activation_requires_separate_coder_evidence(self):
         """INSTALL-CODER-EVIDENCE: Reviewer evidence cannot prove coder access.
 
@@ -45,7 +85,6 @@ class InstallTests(unittest.TestCase):
         self.assertIn('experimental source-guided regeneration',policy)
         self.assertNotIn('with H3 for video',policy)
         self.assertIn('terra_coder',policy)
-        self.assertIn('fresh',policy)
         self.assertNotIn('Qwen through Ollama',policy)
         install.rollback(backup)
 

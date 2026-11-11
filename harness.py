@@ -1,5 +1,6 @@
 # NATIVE-CODE: Public and replayed code jobs refuse before side effects; use a
-# native terra_coder session and separate terra review. Doctor reports unprobed
+# Sol selects task-appropriate native help, with terra review when warranted.
+# Refusal guidance must not require a reviewer for every task. Doctor reports unprobed
 # native coding metadata and never contacts Ollama. Asset handoff contacts legacy
 # Ollama only when both valid ownership keys exist; reject partial or malformed
 # pairs before any queue call. Evidence: tests/test_native_migration.py.
@@ -296,7 +297,7 @@ def run_command(argv, cwd, log, deadline, cancelled, env=None, stdin_path=None):
                 process.wait(timeout=10)
 
 
-NATIVE_CODE_MESSAGE = "Use native terra_coder for coding and a separate fresh terra session for review"
+NATIVE_CODE_MESSAGE = "Ask Sol to select task-appropriate help, such as terra_coder for bounded coding, and use terra review when requested or warranted by the change"
 
 
 def code_command(config, workspace):
