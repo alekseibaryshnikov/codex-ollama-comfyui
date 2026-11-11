@@ -28,6 +28,21 @@ class NativeMigration(unittest.TestCase):
         """NATIVE-CODE: CLI gives migration instruction before reading config/request."""
         p=subprocess.run([sys.executable,'harness.py','--config',str(self.root/'missing'),'code','start','--request',str(self.root/'missing'),'--workspace',str(self.root)],capture_output=True,text=True)
         self.assertNotEqual(p.returncode,0); self.assertIn('terra_coder',p.stderr)
+    def test_retired_cli_guidance_makes_review_conditional(self):
+        """NATIVE-CODE in harness.py: retired CLI points to task-aware help.
+
+        A real child CLI refuses a missing-config request before reading it and
+        explains conditional review. This does not exercise live native agents.
+        """
+        p=subprocess.run([sys.executable,'harness.py','--config',str(self.root/'missing'),'code','start','--request',str(self.root/'missing'),'--workspace',str(self.root)],capture_output=True,text=True)
+        self.assertNotEqual(p.returncode,0)
+        self.assertIn('Sol',p.stderr)
+        self.assertIn('terra_coder',p.stderr)
+        self.assertIn('terra',p.stderr)
+        self.assertIn('when',p.stderr)
+        self.assertNotIn('fresh terra session',p.stderr)
+        self.assertFalse((self.root/'missing').exists())
+
     def test_doctor_no_ollama_and_gpu_handoff_without_legacy_pair(self):
         """NATIVE-CODE: doctor and fresh asset handoff contact only Comfy."""
         def http(url,data=None):

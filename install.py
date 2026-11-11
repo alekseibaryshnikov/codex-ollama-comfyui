@@ -13,8 +13,11 @@ Evidence: tests/test_install.py.
 INSTALL-REFRESH: Refresh only an already activated Sol/OpenAI profile; preserve
 root and surrounding bytes, refuse ambiguous skills, and allow rollback. Evidence:
 tests/test_native_migration.py.
-INSTALL-NATIVE: Stage, activate and roll back distinct native coding and review roles;
-route bounded coding to terra_coder and independent fresh review to terra.
+INSTALL-NATIVE: Stage, activate and roll back distinct native coding and review roles.
+INSTALL-LUNA: Stage, activate and refresh publish the optional Luna role with
+its specified model and effort; rollback restores prior bytes or removes a new
+role. Stage and refresh preserve root config and unrelated instruction bytes.
+Luna availability is not an activation smoke gate. Evidence: tests/test_install.py.
 Evidence: tests/test_install.py and tests/test_portability.py.
 INSTALL-PORTABLE: Render the actual checkout and selected profile paths. Stage
 roles and the user skill under the profile's .agents/skills without modifying
@@ -43,7 +46,7 @@ def skill_path(codex_home):
 
 def _agent_payloads(home):
     payloads={}
-    for name in ['astra','terra','terra_coder']:
+    for name in ['astra','terra','terra_coder','luna']:
         data=(BASE/'integration'/f'{name}.toml').read_bytes()
         tomllib.loads(data.decode('utf-8'))
         payloads[home/'agents'/f'{name}.toml']=data
@@ -56,20 +59,29 @@ def stage(codex_home):
     home=Path(codex_home).resolve()
     return _apply(home,_agent_payloads(home),{'stage_only':True})
 REQUIRED = {'tests','terra_coder','terra','astra','image','image_edit','video','video_edit','music','speech','sfx'}
-MARKER = '''<!-- local-harness:start -->
+MARKER = """<!-- local-harness:start -->
+Sol remains the root and handles quick answers, planning, general or ambiguous
+work and tiny edits directly. Respect explicit user model choices. Choose roles
+only when delegation helps. Choose and invoke roles automatically when useful;
+the user need not name a model or request delegation. Use terra_coder for
+meaningful bounded implementation;
+optional luna for narrow mechanical extraction, scanning or formatting; astra
+for difficult architecture, complex reasoning or unresolved failures. If luna
+is unavailable, Sol handles the work. Do not run models as a mandatory chain.
+Normally use one worker; parallelize only genuinely independent beneficial tasks.
+Use terra review when requested, for materially high-risk work (auth, permissions,
+money, migrations, concurrency) or substantial cross-cutting changes. Batch
+repairs and reuse the reviewer unless independence or fresh context is needed.
+Use fork_turns='none' by default with a compact self-contained brief, owned files
+and checks; use full history only when justified. Sol must not duplicate delegated
+work. Workers and specialists do not delegate recursively.
 For local coding and asset-generation tasks, load and follow the local-harness
-skill at __SKILL_PATH__. Sol coordinates and delegates routine bounded coding
-to native terra_coder. A separate fresh native terra session independently reviews
-every implementation and repair. Native astra handles difficult decisions and
-unresolved failures. No Qwen or Ollama automatic coding route or fallback is used.
-Use registered ComfyUI presets for assets, with LTX-2.5 for video generation.
-The LTX video_edit route is experimental source-guided regeneration.
-This explicitly requests those subagents when the workflow calls for them.
-Worker and specialist sessions perform their bounded assignment without
-recursively invoking the coordinator workflow. Other user/project instructions
-and authorization boundaries still apply.
+skill at __SKILL_PATH__. Use registered ComfyUI presets for assets, with LTX-2.5
+for video generation. The LTX video_edit route is
+experimental source-guided regeneration. No Qwen or Ollama automatic coding route or fallback is used.
+Other user/project instructions and authorization boundaries still apply.
 <!-- local-harness:end -->
-'''
+"""
 
 
 def _hash(data):

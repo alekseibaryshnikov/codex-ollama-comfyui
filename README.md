@@ -1,8 +1,9 @@
 # Codex and ComfyUI on Windows
 
-A recoverable harness with Codex as the interface. Sol coordinates, native
-`terra_coder` implements routine bounded code changes, and a separate fresh
-`terra` session reviews every patch and repair. Astra handles difficult work.
+A recoverable harness with Codex as the interface. Sol handles general work and
+chooses native roles when useful: `terra_coder` for bounded implementation,
+optional `luna` for narrow mechanical work, and Astra for difficult reasoning.
+Independent Terra review is used when requested or warranted by the change.
 ComfyUI makes the media. Coding uses signed-in Codex access and no local GPU.
 See the [HTML routing and verification report](docs/terra-coding-routing.html).
 
@@ -15,9 +16,10 @@ machine configuration, generated media or old job histories.
 
 | Task | Route |
 |---|---|
-| Coordination and complex work | `gpt-6.1-sol`, high reasoning |
-| Routine coding | Native `terra_coder`, `gpt-6.1-terra`, medium |
-| Difficult work | Native `astra`, `gpt-6-astra`, high |
+| General work, planning and tiny edits | `gpt-6.1-sol`, high reasoning |
+| Bounded implementation when useful | Native `terra_coder`, `gpt-6.1-terra`, medium |
+| Optional narrow mechanical work | Native `luna`, `gpt-6-luna`, high |
+| Difficult architecture, reasoning or unresolved failures | Native `astra`, `gpt-6-astra`, high |
 | Independent code review | Native `terra`, `gpt-6.1-terra`, high |
 | Images | Juggernaut XL |
 | Image editing | Qwen Image Edit 2511 INT8 with four-step Lightning |
@@ -26,7 +28,9 @@ machine configuration, generated media or old job histories.
 | Music / sound effects / speech | ACE-Step 1.0 / Stable Audio Open 1.0 / Kokoro |
 
 OpenAI models use signed-in Codex access. No separately billed OpenAI API client
-is added. Your Codex account must provide the configured models and subagents.
+is added. Your Codex account must provide the configured models and subagents. Luna is
+optional; if unavailable, Sol handles that work. Its availability is not an
+activation smoke gate.
 
 ## Fresh Windows setup
 
@@ -224,10 +228,11 @@ py -3.12 harness.py status <job-id>
 py -3.12 harness.py cancel <job-id>
 ```
 
-Ask Sol to delegate routine coding to `terra_coder` with owned files, a behavioral
-contract, observed failing tests and check commands. Use a separate fresh `terra`
-reviewer for the exact current patch. At most two focused repairs are allowed;
-difficult remaining work goes to Sol or Astra. The old local `code start` route
+Sol can delegate meaningful bounded coding to `terra_coder` with owned files, a
+behavioral contract, relevant failing tests and check commands. Terra review is
+used on request, for materially high-risk work or substantial cross-cutting
+changes. Batch repairs and reuse the reviewer unless fresh independence or
+context is needed. The old local `code start` route
 is retired and refuses new or replayed Qwen work. Historical job status, review
 and cancellation remain inspectable. No automatic Ollama fallback is configured.
 

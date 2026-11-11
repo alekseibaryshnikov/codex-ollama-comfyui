@@ -2,45 +2,45 @@
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Native Terra coding route</title>
+<title>Task-aware native routing</title>
 <style>
 :root{font-family:system-ui,sans-serif;color:#173c35;background:#f2f6f1}body{max-width:1000px;margin:auto;padding:35px 20px 65px}h1{font-size:clamp(32px,5vw,52px);letter-spacing:-.04em}p,li{line-height:1.7}.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:30px 0}.card{padding:22px;background:white;border:1px solid #c8d8ce;border-radius:14px}.card strong{display:block;font-size:22px;margin:8px 0}.tag{color:#527065;font-size:14px}table{width:100%;border-collapse:collapse;background:white}th,td{text-align:left;padding:13px;border-bottom:1px solid #d0ded4}.scroll{overflow:auto}a{color:#076952}.verified{padding:16px 22px;border-left:5px solid #208165;background:#e2eee4}code{overflow-wrap:anywhere}h2{margin-top:35px}
 </style>
-<h1>Terra implements. Terra reviews separately.</h1>
-<p>Sol coordinates a bounded assignment, hands routine coding to a native Terra
-worker, then obtains a fresh independent Terra review of the exact patch. Astra
-handles difficult decisions and unresolved failures. ComfyUI keeps the media GPU.</p>
+<h1>Sol chooses the right help for the task</h1>
+<p>Sol stays the root and handles general work, planning, quick answers and tiny
+edits. It delegates when useful, respecting an explicit user model choice. The
+<a href="../README.md">README</a> and installed local-harness skill describe the
+current policy and setup.</p>
 <div class="flow">
-<div class="card"><span class="tag">1. Coordinate</span><strong>Sol</strong>Contract, owned files, acceptance checks and delegation.</div>
-<div class="card"><span class="tag">2. Implement</span><strong>terra_coder</strong>GPT-6.1 Terra, medium reasoning. Bounded coding and checks.</div>
-<div class="card"><span class="tag">3. Review</span><strong>terra</strong>GPT-6.1 Terra, high reasoning. A fresh session reviews the patch.</div>
-<div class="card"><span class="tag">4. Accept or repair</span><strong>Sol</strong>Resolve findings, require fresh review, escalate difficult work to Astra.</div>
+<div class="card"><span class="tag">Root</span><strong>Sol</strong>Handles the task directly or gives a bounded assignment with owned files and checks.</div>
+<div class="card"><span class="tag">Implementation</span><strong>terra_coder</strong>GPT-6.1 Terra, medium reasoning, for meaningful bounded coding when useful.</div>
+<div class="card"><span class="tag">Optional mechanical work</span><strong>luna</strong>GPT-6 Luna, high reasoning, for narrow extraction, scanning or formatting. Sol handles it if Luna is unavailable.</div>
+<div class="card"><span class="tag">Difficult questions</span><strong>astra</strong>GPT-6 Astra, high reasoning, for difficult architecture, complex reasoning or unresolved failures.</div>
+<div class="card"><span class="tag">Independent review</span><strong>terra</strong>GPT-6.1 Terra, high reasoning, when requested, for materially high-risk work or substantial cross-cutting changes.</div>
 </div>
-<h2>What changed</h2>
-<div class="scroll"><table><thead><tr><th>Boundary</th><th>Current behavior</th></tr></thead><tbody>
-<tr><td>Routine coding</td><td>Native signed-in Codex agent; no Ollama inference or GPU lease.</td></tr>
-<tr><td>Reviews</td><td>A separate fresh Terra session reviews every implementation and repair. Separate sessions still use the same model family.</td></tr>
-<tr><td>Windows setup</td><td>Stages coder, reviewer and Astra. Restores skills/plugins and installs ComfyUI/media dependencies. No default Ollama/Qwen installation, startup or download.</td></tr>
-<tr><td>Old coding commands</td><td>Refuse new work and historical worker replay with native-route guidance. Historical job inspection/review/cancellation remains.</td></tr>
-<tr><td>Existing installations</td><td>Refresh preserves root configuration and instructions outside the marked routing block, with backup and hash-guarded rollback.</td></tr>
-<tr><td>Media</td><td>The seven registered presets and model files remain. Qwen Image Edit is the existing image model, separate from the retired coding worker.</td></tr>
-</tbody></table></div>
-<h2>Observed verification</h2>
-<div class="verified"><p>142 regression tests completed, OK, with seven optional
-checks skipped. A separate Terra reviewer approved the implementation and its
-repairs. The active update preserved media configuration, workflows and all
-existing job/runtime data, including 25 terminal jobs.</p>
-<p>The active doctor reported all seven media presets ready. Codex parsed distinct
-coder/reviewer definitions in the real profile. These diagnostics made no model
-calls and report native model availability as unprobed.</p></div>
-<h2>What still needs a fresh session</h2>
-<p>Open a new signed-in Codex chat to load the updated native roles. A fresh Windows
-installation still needs its own native coder/reviewer and asset smoke checks
-before activation. No matched coding cost or speed benchmark was performed.</p>
-<p>Luna remains a possible option for small mechanical edits and triage; this
-configuration uses the requested Terra routine coding route.</p>
-<p><a href="../README.md">Setup and everyday usage</a> ·
-<a href="windows-setup.md">Windows installer</a> ·
-<a href="recovery.md">Refresh and recovery</a> ·
+<p>One worker is normal. Parallel workers need genuinely independent, beneficial
+tasks. Sol batches repairs and reuses the reviewer unless independence or fresh
+context is needed. Models are not run as a mandatory chain. Native coding uses
+no Ollama inference or media GPU lease.</p>
+<h2>Installation and verification</h2>
+<p>Staging publishes the roles and skill without changing root routing. Refresh
+preserves root configuration and instructions outside the marked routing block,
+with backup and hash-guarded rollback. Luna is optional and is not an activation
+smoke gate. Staging does not prove account access or role discovery.</p>
+<div class="verified"><p>The final local test suite ran 144 tests: 136 passed
+and eight were skipped. The temporary-profile tests cover Luna publication and
+rollback, not live Codex discovery or model access. The retired-command test
+checks actual CLI refusal guidance. The focused installer, native migration and
+portability suites also ran 22 tests, all passing. No new live model or media
+smoke was run for this update.</p></div>
+<p>On the earlier Terra migration, diagnostics reported the seven media presets
+ready and parsed coder/reviewer definitions; those diagnostics did not call the
+models. A new installation needs its own native and asset smoke checks before
+activation. Open a new signed-in Codex chat to load updated roles. No matched
+coding cost or speed benchmark was performed.</p>
+<p><a href="../README.md">Setup and everyday usage</a> Â·
+<a href="verification.md">Verification checklist</a> Â·
+<a href="windows-setup.md">Windows installer</a> Â·
+<a href="recovery.md">Refresh and recovery</a> Â·
 <a href="../TDD_EVIDENCE.md">Contracts and test evidence</a></p>
 </html>
